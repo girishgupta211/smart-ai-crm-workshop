@@ -109,3 +109,12 @@ node scripts/test-mock-ai-agent.js
 ```
 
 This verifies the required agent sequence: metrics lookup, scoped context lookup, fallback when no context exists, and strategy update only after usable context is available.
+
+For a workshop-friendly trace that shows the AI agent talking to multiple tools, run:
+
+```sh
+node scripts/demo-mock-ai-agent.js 2
+node scripts/demo-mock-ai-agent.js 50
+```
+
+Lead `2` shows the full multi-tool strategy path. Lead `50` shows the no-context guardrail path.

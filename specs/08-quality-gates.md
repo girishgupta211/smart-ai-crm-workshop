@@ -16,6 +16,7 @@
 | AI Integration | Schema alignment | Validate strategy response | `risk_level` and `risk_justification` parse separately | Pending |
 | AI Integration | Mock MCP tools | Run `node scripts/test-mock-mcp-tools.js` | Metrics, context, fallback, validation, and upsert behavior pass | Pending |
 | AI Integration | Mock AI agent | Run `node scripts/test-mock-ai-agent.js` | Agent calls MCP tools in sequence and respects no-context fallback | Pending |
+| Workshop Demo | Verbose AI trace | Run `node scripts/demo-mock-ai-agent.js 2` | Console shows agent-to-tool calls and tool-to-agent responses | Pending |
 
 ## Manual Smoke Test
 
