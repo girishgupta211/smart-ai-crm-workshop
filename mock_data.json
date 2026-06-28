@@ -1,158 +1,1378 @@
 {
   "leads": [
-    { "id": "1", "company_name": "Acme Corp", "contact_person": "John Doe", "email": "john@acme.com", "stage": "Lead", "deal_value": 5000 },
-    { "id": "2", "company_name": "Globex", "contact_person": "Jane Smith", "email": "jane@globex.com", "stage": "Proposal", "deal_value": 15000 },
-    { "id": "3", "company_name": "Initech", "contact_person": "Peter Gibbons", "email": "peter@initech.com", "stage": "Contacted", "deal_value": 8000 },
-    { "id": "4", "company_name": "Stark Industries", "contact_person": "Tony Stark", "email": "tony@stark.com", "stage": "Won", "deal_value": 500000 },
-    { "id": "5", "company_name": "Wayne Enterprises", "contact_person": "Bruce Wayne", "email": "bruce@wayne.com", "stage": "Lost", "deal_value": 250000 },
-    { "id": "6", "company_name": "Cyberdyne", "contact_person": "Miles Dyson", "email": "miles@cyberdyne.com", "stage": "Proposal", "deal_value": 75000 },
-    { "id": "7", "company_name": "Massive Dynamic", "contact_person": "William Bell", "email": "william@massive.com", "stage": "Lead", "deal_value": 120000 },
-    { "id": "8", "company_name": "Hooli", "contact_person": "Gavin Belson", "email": "gavin@hooli.com", "stage": "Contacted", "deal_value": 45000 },
-    { "id": "9", "company_name": "Pied Piper", "contact_person": "Richard Hendricks", "email": "richard@piedpiper.com", "stage": "Won", "deal_value": 15000 },
-    { "id": "10", "company_name": "Dunder Mifflin", "contact_person": "Michael Scott", "email": "michael@dundermifflin.com", "stage": "Proposal", "deal_value": 2500 },
-    { "id": "11", "company_name": "Soylent Corp", "contact_person": "Charlton Heston", "email": "charlton@soylent.com", "stage": "Lost", "deal_value": 40000 },
-    { "id": "12", "company_name": "Umbrella Corp", "contact_person": "Albert Wesker", "email": "albert@umbrella.com", "stage": "Contacted", "deal_value": 85000 },
-    { "id": "13", "company_name": "LexCorp", "contact_person": "Lex Luthor", "email": "lex@lexcorp.com", "stage": "Proposal", "deal_value": 300000 },
-    { "id": "14", "company_name": "Oscorp", "contact_person": "Norman Osborn", "email": "norman@oscorp.com", "stage": "Lead", "deal_value": 150000 },
-    { "id": "15", "company_name": "Aperture Science", "contact_person": "Cave Johnson", "email": "cave@aperture.com", "stage": "Won", "deal_value": 200000 },
-    { "id": "16", "company_name": "Black Mesa", "contact_person": "Gordon Freeman", "email": "gordon@blackmesa.com", "stage": "Lost", "deal_value": 95000 },
-    { "id": "17", "company_name": "Weyland-Yutani", "contact_person": "Carter Burke", "email": "carter@weyland.com", "stage": "Proposal", "deal_value": 600000 },
-    { "id": "18", "company_name": "Tyrell Corp", "contact_person": "Eldon Tyrell", "email": "eldon@tyrell.com", "stage": "Contacted", "deal_value": 450000 },
-    { "id": "19", "company_name": "Omni Consumer Products", "contact_person": "Dick Jones", "email": "dick@ocp.com", "stage": "Won", "deal_value": 800000 },
-    { "id": "20", "company_name": "Virtucon", "contact_person": "Dr. Evil", "email": "dr.evil@virtucon.com", "stage": "Lead", "deal_value": 1000000 },
-    { "id": "21", "company_name": "Buy n Large", "contact_person": "Shelby Forthright", "email": "shelby@bnl.com", "stage": "Proposal", "deal_value": 55000 },
-    { "id": "22", "company_name": "InGen", "contact_person": "John Hammond", "email": "john@ingen.com", "stage": "Lost", "deal_value": 125000 },
-    { "id": "23", "company_name": "Tricell", "contact_person": "Excella Gionne", "email": "excella@tricell.com", "stage": "Contacted", "deal_value": 65000 },
-    { "id": "24", "company_name": "Mishima Zaibatsu", "contact_person": "Heihachi Mishima", "email": "heihachi@mishima.com", "stage": "Won", "deal_value": 350000 },
-    { "id": "25", "company_name": "G Corp", "contact_person": "Kazuya Mishima", "email": "kazuya@gcorp.com", "stage": "Lead", "deal_value": 280000 },
-    { "id": "26", "company_name": "Shadaloo", "contact_person": "M. Bison", "email": "bison@shadaloo.com", "stage": "Proposal", "deal_value": 420000 },
-    { "id": "27", "company_name": "SIN", "contact_person": "Seth", "email": "seth@sin.com", "stage": "Lost", "deal_value": 180000 },
-    { "id": "28", "company_name": "Illuminati", "contact_person": "Gill", "email": "gill@illuminati.com", "stage": "Contacted", "deal_value": 900000 },
-    { "id": "29", "company_name": "Militaires Sans Frontieres", "contact_person": "Big Boss", "email": "boss@msf.com", "stage": "Won", "deal_value": 500000 },
-    { "id": "30", "company_name": "Diamond Dogs", "contact_person": "Venom Snake", "email": "snake@diamonddogs.com", "stage": "Lead", "deal_value": 600000 },
-    { "id": "31", "company_name": "Foxhound", "contact_person": "Roy Campbell", "email": "roy@foxhound.com", "stage": "Proposal", "deal_value": 220000 },
-    { "id": "32", "company_name": "Philanthropy", "contact_person": "Otacon", "email": "otacon@philanthropy.com", "stage": "Lost", "deal_value": 45000 },
-    { "id": "33", "company_name": "Outer Heaven", "contact_person": "Liquid Snake", "email": "liquid@outerheaven.com", "stage": "Contacted", "deal_value": 750000 },
-    { "id": "34", "company_name": "Patriots", "contact_person": "Zero", "email": "zero@patriots.com", "stage": "Won", "deal_value": 1000000 },
-    { "id": "35", "company_name": "Abstergo Industries", "contact_person": "Warren Vidic", "email": "warren@abstergo.com", "stage": "Lead", "deal_value": 320000 },
-    { "id": "36", "company_name": "Blume Corp", "contact_person": "Dusan Nemec", "email": "dusan@blume.com", "stage": "Proposal", "deal_value": 480000 },
-    { "id": "37", "company_name": "Nuka-Cola Corp", "contact_person": "John-Caleb Bradberton", "email": "john@nukacola.com", "stage": "Lost", "deal_value": 150000 },
-    { "id": "38", "company_name": "RobCo Industries", "contact_person": "Robert House", "email": "robert@robco.com", "stage": "Contacted", "deal_value": 850000 },
-    { "id": "39", "company_name": "Vault-Tec", "contact_person": "Stanislaus Braun", "email": "stanislaus@vaulttec.com", "stage": "Won", "deal_value": 950000 },
-    { "id": "40", "company_name": "Rapture Records", "contact_person": "Andrew Ryan", "email": "andrew@rapture.com", "stage": "Lead", "deal_value": 550000 },
-    { "id": "41", "company_name": "Fontaine Futuristics", "contact_person": "Frank Fontaine", "email": "frank@fontaine.com", "stage": "Proposal", "deal_value": 650000 },
-    { "id": "42", "company_name": "Ryan Industries", "contact_person": "Augustus Sinclair", "email": "augustus@ryan.com", "stage": "Lost", "deal_value": 250000 },
-    { "id": "43", "company_name": "Fink Manufacturing", "contact_person": "Jeremiah Fink", "email": "jeremiah@fink.com", "stage": "Contacted", "deal_value": 350000 },
-    { "id": "44", "company_name": "Hyperion", "contact_person": "Handsome Jack", "email": "jack@hyperion.com", "stage": "Won", "deal_value": 700000 },
-    { "id": "45", "company_name": "Maliwan", "contact_person": "Katagawa Jr.", "email": "katagawa@maliwan.com", "stage": "Lead", "deal_value": 450000 },
-    { "id": "46", "company_name": "Jakobs", "contact_person": "Wainwright Jakobs", "email": "wainwright@jakobs.com", "stage": "Proposal", "deal_value": 500000 },
-    { "id": "47", "company_name": "Torgue", "contact_person": "Mr. Torgue", "email": "torgue@torgue.com", "stage": "Lost", "deal_value": 120000 },
-    { "id": "48", "company_name": "Atlas", "contact_person": "Rhys Strongfork", "email": "rhys@atlas.com", "stage": "Contacted", "deal_value": 380000 },
-    { "id": "49", "company_name": "Dahl", "contact_person": "Hector", "email": "hector@dahl.com", "stage": "Won", "deal_value": 290000 },
-    { "id": "50", "company_name": "Vladof", "contact_person": "Moze", "email": "moze@vladof.com", "stage": "Lead", "deal_value": 170000 }
+    {
+      "id": "1",
+      "company_name": "Acme Corp",
+      "contact_person": "John Doe",
+      "email": "john@acme.com",
+      "stage": "Lead",
+      "deal_value": 5000,
+      "last_interaction_date": "2026-06-20T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "company_name": "Globex",
+      "contact_person": "Jane Smith",
+      "email": "jane@globex.com",
+      "stage": "Proposal",
+      "deal_value": 15000,
+      "last_interaction_date": "2026-06-28T12:30:00Z"
+    },
+    {
+      "id": "3",
+      "company_name": "Initech",
+      "contact_person": "Peter Gibbons",
+      "email": "peter@initech.com",
+      "stage": "Contacted",
+      "deal_value": 8000,
+      "last_interaction_date": "2026-06-22T14:30:00Z"
+    },
+    {
+      "id": "4",
+      "company_name": "Stark Industries",
+      "contact_person": "Tony Stark",
+      "email": "tony@stark.com",
+      "stage": "Won",
+      "deal_value": 500000,
+      "last_interaction_date": "2026-06-25T11:00:00Z"
+    },
+    {
+      "id": "5",
+      "company_name": "Wayne Enterprises",
+      "contact_person": "Bruce Wayne",
+      "email": "bruce@wayne.com",
+      "stage": "Lost",
+      "deal_value": 250000,
+      "last_interaction_date": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "6",
+      "company_name": "Cyberdyne",
+      "contact_person": "Miles Dyson",
+      "email": "miles@cyberdyne.com",
+      "stage": "Proposal",
+      "deal_value": 75000,
+      "last_interaction_date": "2026-06-26T16:00:00Z"
+    },
+    {
+      "id": "7",
+      "company_name": "Massive Dynamic",
+      "contact_person": "William Bell",
+      "email": "william@massive.com",
+      "stage": "Lead",
+      "deal_value": 120000,
+      "last_interaction_date": "2026-06-27T10:30:00Z"
+    },
+    {
+      "id": "8",
+      "company_name": "Hooli",
+      "contact_person": "Gavin Belson",
+      "email": "gavin@hooli.com",
+      "stage": "Contacted",
+      "deal_value": 45000,
+      "last_interaction_date": "2026-06-27T11:40:00Z"
+    },
+    {
+      "id": "9",
+      "company_name": "Pied Piper",
+      "contact_person": "Richard Hendricks",
+      "email": "richard@piedpiper.com",
+      "stage": "Won",
+      "deal_value": 15000,
+      "last_interaction_date": "2026-06-28T09:00:00Z"
+    },
+    {
+      "id": "10",
+      "company_name": "Dunder Mifflin",
+      "contact_person": "Michael Scott",
+      "email": "michael@dundermifflin.com",
+      "stage": "Proposal",
+      "deal_value": 2500,
+      "last_interaction_date": "2026-06-28T15:00:00Z"
+    },
+    {
+      "id": "11",
+      "company_name": "Soylent Corp",
+      "contact_person": "Charlton Heston",
+      "email": "charlton@soylent.com",
+      "stage": "Lost",
+      "deal_value": 40000,
+      "last_interaction_date": "2026-06-21T10:00:00Z"
+    },
+    {
+      "id": "12",
+      "company_name": "Umbrella Corp",
+      "contact_person": "Albert Wesker",
+      "email": "albert@umbrella.com",
+      "stage": "Contacted",
+      "deal_value": 85000,
+      "last_interaction_date": "2026-06-22T11:00:00Z"
+    },
+    {
+      "id": "13",
+      "company_name": "LexCorp",
+      "contact_person": "Lex Luthor",
+      "email": "lex@lexcorp.com",
+      "stage": "Proposal",
+      "deal_value": 300000,
+      "last_interaction_date": "2026-06-23T14:00:00Z"
+    },
+    {
+      "id": "14",
+      "company_name": "Oscorp",
+      "contact_person": "Norman Osborn",
+      "email": "norman@oscorp.com",
+      "stage": "Lead",
+      "deal_value": 150000,
+      "last_interaction_date": "2026-06-24T09:30:00Z"
+    },
+    {
+      "id": "15",
+      "company_name": "Aperture Science",
+      "contact_person": "Cave Johnson",
+      "email": "cave@aperture.com",
+      "stage": "Won",
+      "deal_value": 200000,
+      "last_interaction_date": "2026-06-25T13:45:00Z"
+    },
+    {
+      "id": "16",
+      "company_name": "Black Mesa",
+      "contact_person": "Gordon Freeman",
+      "email": "gordon@blackmesa.com",
+      "stage": "Lost",
+      "deal_value": 95000,
+      "last_interaction_date": "2026-06-26T10:15:00Z"
+    },
+    {
+      "id": "17",
+      "company_name": "Weyland-Yutani",
+      "contact_person": "Carter Burke",
+      "email": "carter@weyland.com",
+      "stage": "Proposal",
+      "deal_value": 600000,
+      "last_interaction_date": "2026-06-28T08:45:00Z"
+    },
+    {
+      "id": "18",
+      "company_name": "Tyrell Corp",
+      "contact_person": "Eldon Tyrell",
+      "email": "eldon@tyrell.com",
+      "stage": "Contacted",
+      "deal_value": 450000,
+      "last_interaction_date": "2026-06-28T11:20:00Z"
+    },
+    {
+      "id": "19",
+      "company_name": "Omni Consumer Products",
+      "contact_person": "Dick Jones",
+      "email": "dick@ocp.com",
+      "stage": "Won",
+      "deal_value": 800000,
+      "last_interaction_date": "2026-06-20T16:00:00Z"
+    },
+    {
+      "id": "20",
+      "company_name": "Virtucon",
+      "contact_person": "Dr. Evil",
+      "email": "dr.evil@virtucon.com",
+      "stage": "Lead",
+      "deal_value": 1000000,
+      "last_interaction_date": "2026-06-21T09:00:00Z"
+    },
+    {
+      "id": "21",
+      "company_name": "Buy n Large",
+      "contact_person": "Shelby Forthright",
+      "email": "shelby@bnl.com",
+      "stage": "Proposal",
+      "deal_value": 55000,
+      "last_interaction_date": "2026-06-22T10:30:00Z"
+    },
+    {
+      "id": "22",
+      "company_name": "InGen",
+      "contact_person": "John Hammond",
+      "email": "john@ingen.com",
+      "stage": "Lost",
+      "deal_value": 125000,
+      "last_interaction_date": "2026-06-23T13:15:00Z"
+    },
+    {
+      "id": "23",
+      "company_name": "Tricell",
+      "contact_person": "Excella Gionne",
+      "email": "excella@tricell.com",
+      "stage": "Contacted",
+      "deal_value": 65000,
+      "last_interaction_date": "2026-06-24T15:45:00Z"
+    },
+    {
+      "id": "24",
+      "company_name": "Mishima Zaibatsu",
+      "contact_person": "Heihachi Mishima",
+      "email": "heihachi@mishima.com",
+      "stage": "Won",
+      "deal_value": 350000,
+      "last_interaction_date": "2026-06-25T11:30:00Z"
+    },
+    {
+      "id": "25",
+      "company_name": "G Corp",
+      "contact_person": "Kazuya Mishima",
+      "email": "kazuya@gcorp.com",
+      "stage": "Lead",
+      "deal_value": 280000,
+      "last_interaction_date": "2026-06-26T14:00:00Z"
+    },
+    {
+      "id": "26",
+      "company_name": "Shadaloo",
+      "contact_person": "M. Bison",
+      "email": "bison@shadaloo.com",
+      "stage": "Proposal",
+      "deal_value": 420000,
+      "last_interaction_date": "2026-06-27T09:15:00Z"
+    },
+    {
+      "id": "27",
+      "company_name": "SIN",
+      "contact_person": "Seth",
+      "email": "seth@sin.com",
+      "stage": "Lost",
+      "deal_value": 180000,
+      "last_interaction_date": "2026-06-28T16:30:00Z"
+    },
+    {
+      "id": "28",
+      "company_name": "Illuminati",
+      "contact_person": "Gill",
+      "email": "gill@illuminati.com",
+      "stage": "Contacted",
+      "deal_value": 900000,
+      "last_interaction_date": "2026-06-20T11:45:00Z"
+    },
+    {
+      "id": "29",
+      "company_name": "Militaires Sans Frontieres",
+      "contact_person": "Big Boss",
+      "email": "boss@msf.com",
+      "stage": "Won",
+      "deal_value": 500000,
+      "last_interaction_date": "2026-06-21T13:30:00Z"
+    },
+    {
+      "id": "30",
+      "company_name": "Diamond Dogs",
+      "contact_person": "Venom Snake",
+      "email": "snake@diamonddogs.com",
+      "stage": "Lead",
+      "deal_value": 600000,
+      "last_interaction_date": "2026-06-22T15:00:00Z"
+    },
+    {
+      "id": "31",
+      "company_name": "Foxhound",
+      "contact_person": "Roy Campbell",
+      "email": "roy@foxhound.com",
+      "stage": "Proposal",
+      "deal_value": 220000,
+      "last_interaction_date": "2026-06-23T10:15:00Z"
+    },
+    {
+      "id": "32",
+      "company_name": "Philanthropy",
+      "contact_person": "Otacon",
+      "email": "otacon@philanthropy.com",
+      "stage": "Lost",
+      "deal_value": 45000,
+      "last_interaction_date": "2026-06-24T14:45:00Z"
+    },
+    {
+      "id": "33",
+      "company_name": "Outer Heaven",
+      "contact_person": "Liquid Snake",
+      "email": "liquid@outerheaven.com",
+      "stage": "Contacted",
+      "deal_value": 750000,
+      "last_interaction_date": "2026-06-25T09:30:00Z"
+    },
+    {
+      "id": "34",
+      "company_name": "Patriots",
+      "contact_person": "Zero",
+      "email": "zero@patriots.com",
+      "stage": "Won",
+      "deal_value": 1000000,
+      "last_interaction_date": "2026-06-26T11:00:00Z"
+    },
+    {
+      "id": "35",
+      "company_name": "Abstergo Industries",
+      "contact_person": "Warren Vidic",
+      "email": "warren@abstergo.com",
+      "stage": "Lead",
+      "deal_value": 320000,
+      "last_interaction_date": "2026-06-27T13:15:00Z"
+    },
+    {
+      "id": "36",
+      "company_name": "Blume Corp",
+      "contact_person": "Dusan Nemec",
+      "email": "dusan@blume.com",
+      "stage": "Proposal",
+      "deal_value": 480000,
+      "last_interaction_date": "2026-06-28T16:10:00Z"
+    },
+    {
+      "id": "37",
+      "company_name": "Nuka-Cola Corp",
+      "contact_person": "John-Caleb Bradberton",
+      "email": "john@nukacola.com",
+      "stage": "Lost",
+      "deal_value": 150000,
+      "last_interaction_date": "2026-06-20T10:30:00Z"
+    },
+    {
+      "id": "38",
+      "company_name": "RobCo Industries",
+      "contact_person": "Robert House",
+      "email": "robert@robco.com",
+      "stage": "Contacted",
+      "deal_value": 850000,
+      "last_interaction_date": "2026-06-21T14:00:00Z"
+    },
+    {
+      "id": "39",
+      "company_name": "Vault-Tec",
+      "contact_person": "Stanislaus Braun",
+      "email": "stanislaus@vaulttec.com",
+      "stage": "Won",
+      "deal_value": 950000,
+      "last_interaction_date": "2026-06-22T09:45:00Z"
+    },
+    {
+      "id": "40",
+      "company_name": "Rapture Records",
+      "contact_person": "Andrew Ryan",
+      "email": "andrew@rapture.com",
+      "stage": "Lead",
+      "deal_value": 550000,
+      "last_interaction_date": "2026-06-23T11:30:00Z"
+    },
+    {
+      "id": "41",
+      "company_name": "Fontaine Futuristics",
+      "contact_person": "Frank Fontaine",
+      "email": "frank@fontaine.com",
+      "stage": "Proposal",
+      "deal_value": 650000,
+      "last_interaction_date": "2026-06-24T16:15:00Z"
+    },
+    {
+      "id": "42",
+      "company_name": "Ryan Industries",
+      "contact_person": "Augustus Sinclair",
+      "email": "augustus@ryan.com",
+      "stage": "Lost",
+      "deal_value": 250000,
+      "last_interaction_date": "2026-06-25T10:00:00Z"
+    },
+    {
+      "id": "43",
+      "company_name": "Fink Manufacturing",
+      "contact_person": "Jeremiah Fink",
+      "email": "jeremiah@fink.com",
+      "stage": "Contacted",
+      "deal_value": 350000,
+      "last_interaction_date": "2026-06-26T13:45:00Z"
+    },
+    {
+      "id": "44",
+      "company_name": "Hyperion",
+      "contact_person": "Handsome Jack",
+      "email": "jack@hyperion.com",
+      "stage": "Won",
+      "deal_value": 700000,
+      "last_interaction_date": "2026-06-27T15:00:00Z"
+    },
+    {
+      "id": "45",
+      "company_name": "Maliwan",
+      "contact_person": "Katagawa Jr.",
+      "email": "katagawa@maliwan.com",
+      "stage": "Lead",
+      "deal_value": 450000,
+      "last_interaction_date": "2026-06-28T09:30:00Z"
+    },
+    {
+      "id": "46",
+      "company_name": "Jakobs",
+      "contact_person": "Wainwright Jakobs",
+      "email": "wainwright@jakobs.com",
+      "stage": "Proposal",
+      "deal_value": 500000,
+      "last_interaction_date": "2026-06-20T11:15:00Z"
+    },
+    {
+      "id": "47",
+      "company_name": "Torgue",
+      "contact_person": "Mr. Torgue",
+      "email": "torgue@torgue.com",
+      "stage": "Lost",
+      "deal_value": 120000,
+      "last_interaction_date": "2026-06-21T14:30:00Z"
+    },
+    {
+      "id": "48",
+      "company_name": "Atlas",
+      "contact_person": "Rhys Strongfork",
+      "email": "rhys@atlas.com",
+      "stage": "Contacted",
+      "deal_value": 380000,
+      "last_interaction_date": "2026-06-22T16:00:00Z"
+    },
+    {
+      "id": "49",
+      "company_name": "Dahl",
+      "contact_person": "Hector",
+      "email": "hector@dahl.com",
+      "stage": "Won",
+      "deal_value": 290000,
+      "last_interaction_date": "2026-06-23T10:45:00Z"
+    },
+    {
+      "id": "50",
+      "company_name": "Vladof",
+      "contact_person": "Moze",
+      "email": "moze@vladof.com",
+      "stage": "Lead",
+      "deal_value": 170000,
+      "last_interaction_date": null
+    }
   ],
   "interactions": [
-    { "id": "1", "lead_id": "1", "interaction_date": "2026-06-20T10:00:00Z", "notes": "Initial outreach email sent.", "type": "Email" },
-    { "id": "2", "lead_id": "2", "interaction_date": "2026-06-28T10:00:00Z", "notes": "Discussed proposal details.", "type": "Call" },
-    { "id": "3", "lead_id": "3", "interaction_date": "2026-06-22T14:30:00Z", "notes": "Met at conference, exchanged cards.", "type": "Meeting" },
-    { "id": "4", "lead_id": "4", "interaction_date": "2026-06-25T11:00:00Z", "notes": "Finalized contract terms.", "type": "Meeting" },
-    { "id": "5", "lead_id": "5", "interaction_date": "2026-06-15T09:00:00Z", "notes": "Budget constraints, deal lost.", "type": "Call" },
-    { "id": "6", "lead_id": "6", "interaction_date": "2026-06-26T16:00:00Z", "notes": "Sent technical specs for review.", "type": "Email" },
-    { "id": "7", "lead_id": "7", "interaction_date": "2026-06-27T10:30:00Z", "notes": "Left voicemail.", "type": "Call" },
-    { "id": "8", "lead_id": "8", "interaction_date": "2026-06-24T13:00:00Z", "notes": "Product demo, good feedback.", "type": "Meeting" },
-    { "id": "9", "lead_id": "9", "interaction_date": "2026-06-28T09:00:00Z", "notes": "Signed agreement received.", "type": "Email" },
-    { "id": "10", "lead_id": "10", "interaction_date": "2026-06-28T15:00:00Z", "notes": "Discussed pricing tiers.", "type": "Call" },
-    { "id": "11", "lead_id": "11", "interaction_date": "2026-06-21T10:00:00Z", "notes": "Client mentioned they are going with a competitor.", "type": "Email" },
-    { "id": "12", "lead_id": "12", "interaction_date": "2026-06-22T11:00:00Z", "notes": "Scheduled a follow-up demo for next week.", "type": "Call" },
-    { "id": "13", "lead_id": "13", "interaction_date": "2026-06-23T14:00:00Z", "notes": "Sent over the initial proposal for review.", "type": "Email" },
-    { "id": "14", "lead_id": "14", "interaction_date": "2026-06-24T09:30:00Z", "notes": "Left a voicemail regarding our new features.", "type": "Call" },
-    { "id": "15", "lead_id": "15", "interaction_date": "2026-06-25T13:45:00Z", "notes": "Signed the MSA, deal is officially won!", "type": "Meeting" },
-    { "id": "16", "lead_id": "16", "interaction_date": "2026-06-26T10:15:00Z", "notes": "Project put on hold indefinitely due to internal restructuring.", "type": "Email" },
-    { "id": "17", "lead_id": "17", "interaction_date": "2026-06-27T15:30:00Z", "notes": "Discussed custom integration requirements.", "type": "Meeting" },
-    { "id": "18", "lead_id": "18", "interaction_date": "2026-06-28T11:20:00Z", "notes": "Client asked for a revised quote with fewer seats.", "type": "Call" },
-    { "id": "19", "lead_id": "19", "interaction_date": "2026-06-20T16:00:00Z", "notes": "Received the PO, starting onboarding.", "type": "Email" },
-    { "id": "20", "lead_id": "20", "interaction_date": "2026-06-21T09:00:00Z", "notes": "Cold outreach, awaiting response.", "type": "Email" },
-    { "id": "21", "lead_id": "21", "interaction_date": "2026-06-22T10:30:00Z", "notes": "Presented the ROI analysis.", "type": "Meeting" },
-    { "id": "22", "lead_id": "22", "interaction_date": "2026-06-23T13:15:00Z", "notes": "Lost to incumbent vendor.", "type": "Call" },
-    { "id": "23", "lead_id": "23", "interaction_date": "2026-06-24T15:45:00Z", "notes": "Answered security questionnaire.", "type": "Email" },
-    { "id": "24", "lead_id": "24", "interaction_date": "2026-06-25T11:30:00Z", "notes": "Contract signed and executed.", "type": "Meeting" },
-    { "id": "25", "lead_id": "25", "interaction_date": "2026-06-26T14:00:00Z", "notes": "Initial discovery call completed.", "type": "Call" },
-    { "id": "26", "lead_id": "26", "interaction_date": "2026-06-27T09:15:00Z", "notes": "Sent updated pricing based on new tier.", "type": "Email" },
-    { "id": "27", "lead_id": "27", "interaction_date": "2026-06-28T16:30:00Z", "notes": "Budget slashed, cannot proceed this year.", "type": "Call" },
-    { "id": "28", "lead_id": "28", "interaction_date": "2026-06-20T11:45:00Z", "notes": "Client requested references from similar industries.", "type": "Email" },
-    { "id": "29", "lead_id": "29", "interaction_date": "2026-06-21T13:30:00Z", "notes": "Payment received, account activated.", "type": "Email" },
-    { "id": "30", "lead_id": "30", "interaction_date": "2026-06-22T15:00:00Z", "notes": "Connected on LinkedIn, sent intro message.", "type": "Email" },
-    { "id": "31", "lead_id": "31", "interaction_date": "2026-06-23T10:15:00Z", "notes": "Reviewed terms of service with legal team.", "type": "Meeting" },
-    { "id": "32", "lead_id": "32", "interaction_date": "2026-06-24T14:45:00Z", "notes": "Decided to build solution in-house.", "type": "Call" },
-    { "id": "33", "lead_id": "33", "interaction_date": "2026-06-25T09:30:00Z", "notes": "Followed up on the demo, client is reviewing internally.", "type": "Email" },
-    { "id": "34", "lead_id": "34", "interaction_date": "2026-06-26T11:00:00Z", "notes": "Deal closed, transitioning to customer success.", "type": "Meeting" },
-    { "id": "35", "lead_id": "35", "interaction_date": "2026-06-27T13:15:00Z", "notes": "Sent whitepaper on industry trends.", "type": "Email" },
-    { "id": "36", "lead_id": "36", "interaction_date": "2026-06-28T15:45:00Z", "notes": "Client is negotiating the SLA terms.", "type": "Call" },
-    { "id": "37", "lead_id": "37", "interaction_date": "2026-06-20T10:30:00Z", "notes": "No budget allocated for this quarter.", "type": "Email" },
-    { "id": "38", "lead_id": "38", "interaction_date": "2026-06-21T14:00:00Z", "notes": "Client asked for a proof of concept.", "type": "Meeting" },
-    { "id": "39", "lead_id": "39", "interaction_date": "2026-06-22T09:45:00Z", "notes": "Final approval received from procurement.", "type": "Email" },
-    { "id": "40", "lead_id": "40", "interaction_date": "2026-06-23T11:30:00Z", "notes": "Left a message with the executive assistant.", "type": "Call" },
-    { "id": "41", "lead_id": "41", "interaction_date": "2026-06-24T16:15:00Z", "notes": "Sent the revised contract for signature.", "type": "Email" },
-    { "id": "42", "lead_id": "42", "interaction_date": "2026-06-25T10:00:00Z", "notes": "Champion left the company, deal is dead.", "type": "Call" },
-    { "id": "43", "lead_id": "43", "interaction_date": "2026-06-26T13:45:00Z", "notes": "Discussed implementation timeline.", "type": "Meeting" },
-    { "id": "44", "lead_id": "44", "interaction_date": "2026-06-27T15:00:00Z", "notes": "Kickoff call scheduled for next week.", "type": "Email" },
-    { "id": "45", "lead_id": "45", "interaction_date": "2026-06-28T09:30:00Z", "notes": "Sent out the initial prospecting email.", "type": "Email" },
-    { "id": "46", "lead_id": "46", "interaction_date": "2026-06-20T11:15:00Z", "notes": "Client is reviewing the proposal with the board.", "type": "Call" },
-    { "id": "47", "lead_id": "47", "interaction_date": "2026-06-21T14:30:00Z", "notes": "Too expensive compared to alternatives.", "type": "Email" },
-    { "id": "48", "lead_id": "48", "interaction_date": "2026-06-22T16:00:00Z", "notes": "Provided technical documentation to their engineering team.", "type": "Email" },
-    { "id": "49", "lead_id": "49", "interaction_date": "2026-06-23T10:45:00Z", "notes": "Deal won, celebrated with the team.", "type": "Meeting" },
-    { "id": "50", "lead_id": "50", "interaction_date": "2026-06-24T13:00:00Z", "notes": "Client asked for a feature we don't have yet.", "type": "Call" }
+    {
+      "id": "1",
+      "lead_id": "1",
+      "interaction_date": "2026-06-20T10:00:00Z",
+      "notes": "Initial outreach email sent.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "2",
+      "lead_id": "2",
+      "interaction_date": "2026-06-28T10:00:00Z",
+      "notes": "Discussed proposal details.",
+      "type": "Call",
+      "ai_analyzed": true
+    },
+    {
+      "id": "3",
+      "lead_id": "3",
+      "interaction_date": "2026-06-22T14:30:00Z",
+      "notes": "Met at conference, exchanged cards.",
+      "type": "Meeting",
+      "ai_analyzed": true
+    },
+    {
+      "id": "4",
+      "lead_id": "4",
+      "interaction_date": "2026-06-25T11:00:00Z",
+      "notes": "Finalized contract terms.",
+      "type": "Meeting",
+      "ai_analyzed": true
+    },
+    {
+      "id": "5",
+      "lead_id": "5",
+      "interaction_date": "2026-06-15T09:00:00Z",
+      "notes": "Budget constraints, deal lost.",
+      "type": "Call",
+      "ai_analyzed": true
+    },
+    {
+      "id": "6",
+      "lead_id": "6",
+      "interaction_date": "2026-06-26T16:00:00Z",
+      "notes": "Sent technical specs for review.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "7",
+      "lead_id": "7",
+      "interaction_date": "2026-06-27T10:30:00Z",
+      "notes": "Left voicemail.",
+      "type": "Call",
+      "ai_analyzed": true
+    },
+    {
+      "id": "8",
+      "lead_id": "8",
+      "interaction_date": "2026-06-24T13:00:00Z",
+      "notes": "Product demo, good feedback.",
+      "type": "Meeting",
+      "ai_analyzed": true
+    },
+    {
+      "id": "9",
+      "lead_id": "9",
+      "interaction_date": "2026-06-28T09:00:00Z",
+      "notes": "Signed agreement received.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "10",
+      "lead_id": "10",
+      "interaction_date": "2026-06-28T15:00:00Z",
+      "notes": "Discussed pricing tiers.",
+      "type": "Call",
+      "ai_analyzed": true
+    },
+    {
+      "id": "11",
+      "lead_id": "11",
+      "interaction_date": "2026-06-21T10:00:00Z",
+      "notes": "Client mentioned they are going with a competitor.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "12",
+      "lead_id": "12",
+      "interaction_date": "2026-06-22T11:00:00Z",
+      "notes": "Scheduled a follow-up demo for next week.",
+      "type": "Call",
+      "ai_analyzed": true
+    },
+    {
+      "id": "13",
+      "lead_id": "13",
+      "interaction_date": "2026-06-23T14:00:00Z",
+      "notes": "Sent over the initial proposal for review.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "14",
+      "lead_id": "14",
+      "interaction_date": "2026-06-24T09:30:00Z",
+      "notes": "Left a voicemail regarding our new features.",
+      "type": "Call",
+      "ai_analyzed": true
+    },
+    {
+      "id": "15",
+      "lead_id": "15",
+      "interaction_date": "2026-06-25T13:45:00Z",
+      "notes": "Signed the MSA, deal is officially won!",
+      "type": "Meeting",
+      "ai_analyzed": true
+    },
+    {
+      "id": "16",
+      "lead_id": "16",
+      "interaction_date": "2026-06-26T10:15:00Z",
+      "notes": "Project put on hold indefinitely due to internal restructuring.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "17",
+      "lead_id": "17",
+      "interaction_date": "2026-06-27T15:30:00Z",
+      "notes": "Discussed custom integration requirements.",
+      "type": "Meeting",
+      "ai_analyzed": true
+    },
+    {
+      "id": "18",
+      "lead_id": "18",
+      "interaction_date": "2026-06-28T11:20:00Z",
+      "notes": "Client asked for a revised quote with fewer seats.",
+      "type": "Call",
+      "ai_analyzed": true
+    },
+    {
+      "id": "19",
+      "lead_id": "19",
+      "interaction_date": "2026-06-20T16:00:00Z",
+      "notes": "Received the PO, starting onboarding.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "20",
+      "lead_id": "20",
+      "interaction_date": "2026-06-21T09:00:00Z",
+      "notes": "Cold outreach, awaiting response.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "21",
+      "lead_id": "21",
+      "interaction_date": "2026-06-22T10:30:00Z",
+      "notes": "Presented the ROI analysis.",
+      "type": "Meeting",
+      "ai_analyzed": true
+    },
+    {
+      "id": "22",
+      "lead_id": "22",
+      "interaction_date": "2026-06-23T13:15:00Z",
+      "notes": "Lost to incumbent vendor.",
+      "type": "Call",
+      "ai_analyzed": true
+    },
+    {
+      "id": "23",
+      "lead_id": "23",
+      "interaction_date": "2026-06-24T15:45:00Z",
+      "notes": "Answered security questionnaire.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "24",
+      "lead_id": "24",
+      "interaction_date": "2026-06-25T11:30:00Z",
+      "notes": "Contract signed and executed.",
+      "type": "Meeting",
+      "ai_analyzed": true
+    },
+    {
+      "id": "25",
+      "lead_id": "25",
+      "interaction_date": "2026-06-26T14:00:00Z",
+      "notes": "Initial discovery call completed.",
+      "type": "Call",
+      "ai_analyzed": true
+    },
+    {
+      "id": "26",
+      "lead_id": "26",
+      "interaction_date": "2026-06-27T09:15:00Z",
+      "notes": "Sent updated pricing based on new tier.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "27",
+      "lead_id": "27",
+      "interaction_date": "2026-06-28T16:30:00Z",
+      "notes": "Budget slashed, cannot proceed this year.",
+      "type": "Call",
+      "ai_analyzed": true
+    },
+    {
+      "id": "28",
+      "lead_id": "28",
+      "interaction_date": "2026-06-20T11:45:00Z",
+      "notes": "Client requested references from similar industries.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "29",
+      "lead_id": "29",
+      "interaction_date": "2026-06-21T13:30:00Z",
+      "notes": "Payment received, account activated.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "30",
+      "lead_id": "30",
+      "interaction_date": "2026-06-22T15:00:00Z",
+      "notes": "Connected on LinkedIn, sent intro message.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "31",
+      "lead_id": "31",
+      "interaction_date": "2026-06-23T10:15:00Z",
+      "notes": "Reviewed terms of service with legal team.",
+      "type": "Meeting",
+      "ai_analyzed": true
+    },
+    {
+      "id": "32",
+      "lead_id": "32",
+      "interaction_date": "2026-06-24T14:45:00Z",
+      "notes": "Decided to build solution in-house.",
+      "type": "Call",
+      "ai_analyzed": true
+    },
+    {
+      "id": "33",
+      "lead_id": "33",
+      "interaction_date": "2026-06-25T09:30:00Z",
+      "notes": "Followed up on the demo, client is reviewing internally.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "34",
+      "lead_id": "34",
+      "interaction_date": "2026-06-26T11:00:00Z",
+      "notes": "Deal closed, transitioning to customer success.",
+      "type": "Meeting",
+      "ai_analyzed": true
+    },
+    {
+      "id": "35",
+      "lead_id": "35",
+      "interaction_date": "2026-06-27T13:15:00Z",
+      "notes": "Sent whitepaper on industry trends.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "36",
+      "lead_id": "36",
+      "interaction_date": "2026-06-28T15:45:00Z",
+      "notes": "Client is negotiating the SLA terms.",
+      "type": "Call",
+      "ai_analyzed": true
+    },
+    {
+      "id": "37",
+      "lead_id": "37",
+      "interaction_date": "2026-06-20T10:30:00Z",
+      "notes": "No budget allocated for this quarter.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "38",
+      "lead_id": "38",
+      "interaction_date": "2026-06-21T14:00:00Z",
+      "notes": "Client asked for a proof of concept.",
+      "type": "Meeting",
+      "ai_analyzed": true
+    },
+    {
+      "id": "39",
+      "lead_id": "39",
+      "interaction_date": "2026-06-22T09:45:00Z",
+      "notes": "Final approval received from procurement.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "40",
+      "lead_id": "40",
+      "interaction_date": "2026-06-23T11:30:00Z",
+      "notes": "Left a message with the executive assistant.",
+      "type": "Call",
+      "ai_analyzed": true
+    },
+    {
+      "id": "41",
+      "lead_id": "41",
+      "interaction_date": "2026-06-24T16:15:00Z",
+      "notes": "Sent the revised contract for signature.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "42",
+      "lead_id": "42",
+      "interaction_date": "2026-06-25T10:00:00Z",
+      "notes": "Champion left the company, deal is dead.",
+      "type": "Call",
+      "ai_analyzed": true
+    },
+    {
+      "id": "43",
+      "lead_id": "43",
+      "interaction_date": "2026-06-26T13:45:00Z",
+      "notes": "Discussed implementation timeline.",
+      "type": "Meeting",
+      "ai_analyzed": true
+    },
+    {
+      "id": "44",
+      "lead_id": "44",
+      "interaction_date": "2026-06-27T15:00:00Z",
+      "notes": "Kickoff call scheduled for next week.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "45",
+      "lead_id": "45",
+      "interaction_date": "2026-06-28T09:30:00Z",
+      "notes": "Sent out the initial prospecting email.",
+      "type": "Email",
+      "ai_analyzed": false
+    },
+    {
+      "id": "46",
+      "lead_id": "46",
+      "interaction_date": "2026-06-20T11:15:00Z",
+      "notes": "Client is reviewing the proposal with the board.",
+      "type": "Call",
+      "ai_analyzed": true
+    },
+    {
+      "id": "47",
+      "lead_id": "47",
+      "interaction_date": "2026-06-21T14:30:00Z",
+      "notes": "Too expensive compared to alternatives.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "48",
+      "lead_id": "48",
+      "interaction_date": "2026-06-22T16:00:00Z",
+      "notes": "Provided technical documentation to their engineering team.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "49",
+      "lead_id": "49",
+      "interaction_date": "2026-06-23T10:45:00Z",
+      "notes": "Deal won, celebrated with the team.",
+      "type": "Meeting",
+      "ai_analyzed": true
+    },
+    {
+      "id": "51",
+      "lead_id": "2",
+      "interaction_date": "2026-06-18T09:15:00Z",
+      "notes": "Discovery call covered current CRM gaps and reporting needs.",
+      "type": "Call",
+      "ai_analyzed": true
+    },
+    {
+      "id": "52",
+      "lead_id": "2",
+      "interaction_date": "2026-06-24T14:00:00Z",
+      "notes": "Shared procurement checklist and implementation estimate.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "53",
+      "lead_id": "2",
+      "interaction_date": "2026-06-28T12:30:00Z",
+      "notes": "Buying committee asked for revised terms before signature.",
+      "type": "Meeting",
+      "ai_analyzed": true
+    },
+    {
+      "id": "54",
+      "lead_id": "8",
+      "interaction_date": "2026-06-17T16:20:00Z",
+      "notes": "Initial product walkthrough with sales operations team.",
+      "type": "Meeting",
+      "ai_analyzed": true
+    },
+    {
+      "id": "55",
+      "lead_id": "8",
+      "interaction_date": "2026-06-21T10:10:00Z",
+      "notes": "Sent ROI model and integration notes after demo.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "56",
+      "lead_id": "8",
+      "interaction_date": "2026-06-27T11:40:00Z",
+      "notes": "Champion requested customer references in their segment.",
+      "type": "Call",
+      "ai_analyzed": true
+    },
+    {
+      "id": "57",
+      "lead_id": "17",
+      "interaction_date": "2026-06-19T13:00:00Z",
+      "notes": "Technical stakeholders raised concerns about SSO and data sync.",
+      "type": "Meeting",
+      "ai_analyzed": true
+    },
+    {
+      "id": "58",
+      "lead_id": "17",
+      "interaction_date": "2026-06-23T15:25:00Z",
+      "notes": "Forwarded architecture diagram and API rate-limit details.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "59",
+      "lead_id": "17",
+      "interaction_date": "2026-06-28T08:45:00Z",
+      "notes": "Security review is still open with their platform team.",
+      "type": "Call",
+      "ai_analyzed": true
+    },
+    {
+      "id": "60",
+      "lead_id": "36",
+      "interaction_date": "2026-06-18T11:50:00Z",
+      "notes": "Legal team asked for updated SLA language.",
+      "type": "Email",
+      "ai_analyzed": true
+    },
+    {
+      "id": "61",
+      "lead_id": "36",
+      "interaction_date": "2026-06-25T12:20:00Z",
+      "notes": "Reviewed redlines with buyer and agreed on two exceptions.",
+      "type": "Meeting",
+      "ai_analyzed": true
+    },
+    {
+      "id": "62",
+      "lead_id": "36",
+      "interaction_date": "2026-06-28T16:10:00Z",
+      "notes": "Final approval depends on liability cap language.",
+      "type": "Call",
+      "ai_analyzed": true
+    }
   ],
   "ai_strategies": [
-    { "id": "1", "lead_id": "1", "icebreaker": "Hi John, wanted to see if you received my email...", "next_step": "Follow up in 3 days.", "risk_level": "Medium", "risk_justification": "No response to initial email." },
-    { "id": "2", "lead_id": "2", "icebreaker": "Hi Jane, following up on our call...", "next_step": "Send revised proposal.", "risk_level": "Low", "risk_justification": "Strong interest shown." },
-    { "id": "3", "lead_id": "3", "icebreaker": "Hi Peter, great meeting you at the conference...", "next_step": "Schedule a demo.", "risk_level": "Low", "risk_justification": "Good initial engagement." },
-    { "id": "4", "lead_id": "4", "icebreaker": "Hi Tony, thrilled to have you on board...", "next_step": "Begin onboarding process.", "risk_level": "Low", "risk_justification": "Deal is won." },
-    { "id": "5", "lead_id": "5", "icebreaker": "Hi Bruce, I understand the budget constraints...", "next_step": "Keep in touch for next quarter.", "risk_level": "High", "risk_justification": "Deal lost due to budget." },
-    { "id": "6", "lead_id": "6", "icebreaker": "Hi Miles, hope the tech specs were helpful...", "next_step": "Schedule follow-up call.", "risk_level": "Medium", "risk_justification": "Waiting for technical review." },
-    { "id": "7", "lead_id": "7", "icebreaker": "Hi William, sorry I missed you...", "next_step": "Try calling again tomorrow.", "risk_level": "High", "risk_justification": "Hard to reach." },
-    { "id": "8", "lead_id": "8", "icebreaker": "Hi Gavin, glad you liked the demo...", "next_step": "Send ROI case study.", "risk_level": "Low", "risk_justification": "Positive demo feedback." },
-    { "id": "9", "lead_id": "9", "icebreaker": "Hi Richard, thanks for the signed agreement...", "next_step": "Send welcome package.", "risk_level": "Low", "risk_justification": "Deal won." },
-    { "id": "10", "lead_id": "10", "icebreaker": "Hi Michael, regarding the pricing tiers...", "next_step": "Offer a small discount.", "risk_level": "Medium", "risk_justification": "Price sensitive." },
-    { "id": "11", "lead_id": "11", "icebreaker": "Hi Charlton, I see you went with a competitor...", "next_step": "Nurture campaign.", "risk_level": "High", "risk_justification": "Lost to competitor." },
-    { "id": "12", "lead_id": "12", "icebreaker": "Hi Albert, looking forward to our demo...", "next_step": "Prepare demo environment.", "risk_level": "Low", "risk_justification": "Demo scheduled." },
-    { "id": "13", "lead_id": "13", "icebreaker": "Hi Lex, attached is the initial proposal...", "next_step": "Follow up in 2 days.", "risk_level": "Medium", "risk_justification": "Proposal sent, awaiting feedback." },
-    { "id": "14", "lead_id": "14", "icebreaker": "Hi Norman, just left a voicemail...", "next_step": "Send an email summarizing features.", "risk_level": "Medium", "risk_justification": "No direct contact yet." },
-    { "id": "15", "lead_id": "15", "icebreaker": "Hi Cave, congratulations on signing the MSA...", "next_step": "Schedule kickoff call.", "risk_level": "Low", "risk_justification": "Deal won." },
-    { "id": "16", "lead_id": "16", "icebreaker": "Hi Gordon, sorry to hear about the restructuring...", "next_step": "Check back in 6 months.", "risk_level": "High", "risk_justification": "Project on hold." },
-    { "id": "17", "lead_id": "17", "icebreaker": "Hi Carter, regarding the custom integrations...", "next_step": "Involve sales engineer.", "risk_level": "Medium", "risk_justification": "Complex technical requirements." },
-    { "id": "18", "lead_id": "18", "icebreaker": "Hi Eldon, here is the revised quote...", "next_step": "Awaiting approval on new quote.", "risk_level": "Medium", "risk_justification": "Negotiating scope." },
-    { "id": "19", "lead_id": "19", "icebreaker": "Hi Dick, received the PO...", "next_step": "Handover to CS team.", "risk_level": "Low", "risk_justification": "Deal won." },
-    { "id": "20", "lead_id": "20", "icebreaker": "Hi Dr. Evil, reaching out to see if...", "next_step": "Follow up next week.", "risk_level": "High", "risk_justification": "Cold outreach, no response." },
-    { "id": "21", "lead_id": "21", "icebreaker": "Hi Shelby, following up on the ROI analysis...", "next_step": "Schedule a decision call.", "risk_level": "Low", "risk_justification": "Strong business case presented." },
-    { "id": "22", "lead_id": "22", "icebreaker": "Hi John, understand you chose the incumbent...", "next_step": "Add to long-term nurture.", "risk_level": "High", "risk_justification": "Lost to incumbent." },
-    { "id": "23", "lead_id": "23", "icebreaker": "Hi Excella, attached is the completed security questionnaire...", "next_step": "Awaiting infosec approval.", "risk_level": "Medium", "risk_justification": "Pending security review." },
-    { "id": "24", "lead_id": "24", "icebreaker": "Hi Heihachi, great to have the contract signed...", "next_step": "Send welcome gift.", "risk_level": "Low", "risk_justification": "Deal won." },
-    { "id": "25", "lead_id": "25", "icebreaker": "Hi Kazuya, following up on our discovery call...", "next_step": "Send tailored case studies.", "risk_level": "Low", "risk_justification": "Good initial fit identified." },
-    { "id": "26", "lead_id": "26", "icebreaker": "Hi Bison, here is the updated pricing...", "next_step": "Follow up on pricing review.", "risk_level": "Medium", "risk_justification": "Price negotiation ongoing." },
-    { "id": "27", "lead_id": "27", "icebreaker": "Hi Seth, completely understand the budget cuts...", "next_step": "Check in next fiscal year.", "risk_level": "High", "risk_justification": "No budget." },
-    { "id": "28", "lead_id": "28", "icebreaker": "Hi Gill, I've compiled a list of references...", "next_step": "Coordinate reference calls.", "risk_level": "Low", "risk_justification": "Client validating claims." },
-    { "id": "29", "lead_id": "29", "icebreaker": "Hi Boss, payment confirmed...", "next_step": "Start implementation.", "risk_level": "Low", "risk_justification": "Deal won." },
-    { "id": "30", "lead_id": "30", "icebreaker": "Hi Snake, thanks for connecting on LinkedIn...", "next_step": "Try to schedule a 15-min intro.", "risk_level": "Medium", "risk_justification": "Early stage engagement." },
-    { "id": "31", "lead_id": "31", "icebreaker": "Hi Roy, following up on the legal review...", "next_step": "Address redlines.", "risk_level": "Medium", "risk_justification": "Stuck in legal." },
-    { "id": "32", "lead_id": "32", "icebreaker": "Hi Otacon, I understand you are building in-house...", "next_step": "Close out opportunity.", "risk_level": "High", "risk_justification": "Decided to build vs buy." },
-    { "id": "33", "lead_id": "33", "icebreaker": "Hi Liquid, any questions from your internal review?", "next_step": "Offer to join their internal meeting.", "risk_level": "Medium", "risk_justification": "Awaiting internal consensus." },
-    { "id": "34", "lead_id": "34", "icebreaker": "Hi Zero, deal is closed...", "next_step": "Introduce Customer Success Manager.", "risk_level": "Low", "risk_justification": "Deal won." },
-    { "id": "35", "lead_id": "35", "icebreaker": "Hi Warren, thought this whitepaper might be useful...", "next_step": "Call to discuss the whitepaper.", "risk_level": "Medium", "risk_justification": "Providing value to generate interest." },
-    { "id": "36", "lead_id": "36", "icebreaker": "Hi Dusan, regarding the SLA terms...", "next_step": "Involve our legal counsel.", "risk_level": "Medium", "risk_justification": "SLA negotiation." },
-    { "id": "37", "lead_id": "37", "icebreaker": "Hi John-Caleb, since there's no budget this quarter...", "next_step": "Follow up in Q3.", "risk_level": "High", "risk_justification": "Timing issue." },
-    { "id": "38", "lead_id": "38", "icebreaker": "Hi Robert, let's scope out the POC...", "next_step": "Draft POC success criteria.", "risk_level": "Low", "risk_justification": "Moving to technical validation." },
-    { "id": "39", "lead_id": "39", "icebreaker": "Hi Stanislaus, great news on the procurement approval...", "next_step": "Finalize paperwork.", "risk_level": "Low", "risk_justification": "Deal won." },
-    { "id": "40", "lead_id": "40", "icebreaker": "Hi Andrew, sorry I missed you...", "next_step": "Try email instead of calling.", "risk_level": "High", "risk_justification": "Hard to reach." },
-    { "id": "41", "lead_id": "41", "icebreaker": "Hi Frank, the revised contract is attached...", "next_step": "Awaiting signature.", "risk_level": "Low", "risk_justification": "Contract out for signature." },
-    { "id": "42", "lead_id": "42", "icebreaker": "Hi Augustus, I heard about the departure...", "next_step": "Try to find a new champion.", "risk_level": "High", "risk_justification": "Lost champion." },
-    { "id": "43", "lead_id": "43", "icebreaker": "Hi Jeremiah, regarding the implementation timeline...", "next_step": "Send project plan.", "risk_level": "Low", "risk_justification": "Planning phase." },
-    { "id": "44", "lead_id": "44", "icebreaker": "Hi Jack, looking forward to the kickoff...", "next_step": "Prepare kickoff deck.", "risk_level": "Low", "risk_justification": "Deal won." },
-    { "id": "45", "lead_id": "45", "icebreaker": "Hi Katagawa, reaching out to introduce...", "next_step": "Follow up in 2 days.", "risk_level": "Medium", "risk_justification": "Initial outreach." },
-    { "id": "46", "lead_id": "46", "icebreaker": "Hi Wainwright, any updates from the board?", "next_step": "Offer to answer board questions.", "risk_level": "Medium", "risk_justification": "Board review." },
-    { "id": "47", "lead_id": "47", "icebreaker": "Hi Torgue, I understand we are more expensive...", "next_step": "Highlight value differentiation.", "risk_level": "High", "risk_justification": "Price objection." },
-    { "id": "48", "lead_id": "48", "icebreaker": "Hi Rhys, the technical docs are attached...", "next_step": "Schedule technical Q&A.", "risk_level": "Medium", "risk_justification": "Engineering review." },
-    { "id": "49", "lead_id": "49", "icebreaker": "Hi Hector, time to celebrate...", "next_step": "Internal handoff.", "risk_level": "Low", "risk_justification": "Deal won." },
-    { "id": "50", "lead_id": "50", "icebreaker": "Hi Moze, regarding that missing feature...", "next_step": "Check roadmap with product team.", "risk_level": "Medium", "risk_justification": "Feature gap identified." }
+    {
+      "id": "1",
+      "lead_id": "1",
+      "icebreaker": "Hi John, wanted to see if you received my email...",
+      "next_step": "Follow up in 3 days.",
+      "risk_level": "Medium",
+      "risk_justification": "No response to initial email.",
+      "generated_at": "2026-06-20T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "lead_id": "2",
+      "icebreaker": "Hi Jane, following up on our call...",
+      "next_step": "Send revised proposal.",
+      "risk_level": "Low",
+      "risk_justification": "Strong interest shown.",
+      "generated_at": "2026-06-28T12:30:00Z"
+    },
+    {
+      "id": "3",
+      "lead_id": "3",
+      "icebreaker": "Hi Peter, great meeting you at the conference...",
+      "next_step": "Schedule a demo.",
+      "risk_level": "Low",
+      "risk_justification": "Good initial engagement.",
+      "generated_at": "2026-06-22T14:30:00Z"
+    },
+    {
+      "id": "4",
+      "lead_id": "4",
+      "icebreaker": "Hi Tony, thrilled to have you on board...",
+      "next_step": "Begin onboarding process.",
+      "risk_level": "Low",
+      "risk_justification": "Deal is won.",
+      "generated_at": "2026-06-25T11:00:00Z"
+    },
+    {
+      "id": "5",
+      "lead_id": "5",
+      "icebreaker": "Hi Bruce, I understand the budget constraints...",
+      "next_step": "Keep in touch for next quarter.",
+      "risk_level": "High",
+      "risk_justification": "Deal lost due to budget.",
+      "generated_at": "2026-06-15T09:00:00Z"
+    },
+    {
+      "id": "6",
+      "lead_id": "6",
+      "icebreaker": "Hi Miles, hope the tech specs were helpful...",
+      "next_step": "Schedule follow-up call.",
+      "risk_level": "Medium",
+      "risk_justification": "Waiting for technical review.",
+      "generated_at": "2026-06-26T16:00:00Z"
+    },
+    {
+      "id": "7",
+      "lead_id": "7",
+      "icebreaker": "Hi William, sorry I missed you...",
+      "next_step": "Try calling again tomorrow.",
+      "risk_level": "High",
+      "risk_justification": "Hard to reach.",
+      "generated_at": "2026-06-27T10:30:00Z"
+    },
+    {
+      "id": "8",
+      "lead_id": "8",
+      "icebreaker": "Hi Gavin, glad you liked the demo...",
+      "next_step": "Send ROI case study.",
+      "risk_level": "Low",
+      "risk_justification": "Positive demo feedback.",
+      "generated_at": "2026-06-27T11:40:00Z"
+    },
+    {
+      "id": "9",
+      "lead_id": "9",
+      "icebreaker": "Hi Richard, thanks for the signed agreement...",
+      "next_step": "Send welcome package.",
+      "risk_level": "Low",
+      "risk_justification": "Deal won.",
+      "generated_at": "2026-06-28T09:00:00Z"
+    },
+    {
+      "id": "10",
+      "lead_id": "10",
+      "icebreaker": "Hi Michael, regarding the pricing tiers...",
+      "next_step": "Offer a small discount.",
+      "risk_level": "Medium",
+      "risk_justification": "Price sensitive.",
+      "generated_at": "2026-06-28T15:00:00Z"
+    },
+    {
+      "id": "11",
+      "lead_id": "11",
+      "icebreaker": "Hi Charlton, I see you went with a competitor...",
+      "next_step": "Nurture campaign.",
+      "risk_level": "High",
+      "risk_justification": "Lost to competitor.",
+      "generated_at": "2026-06-21T10:00:00Z"
+    },
+    {
+      "id": "12",
+      "lead_id": "12",
+      "icebreaker": "Hi Albert, looking forward to our demo...",
+      "next_step": "Prepare demo environment.",
+      "risk_level": "Low",
+      "risk_justification": "Demo scheduled.",
+      "generated_at": "2026-06-22T11:00:00Z"
+    },
+    {
+      "id": "13",
+      "lead_id": "13",
+      "icebreaker": "Hi Lex, attached is the initial proposal...",
+      "next_step": "Follow up in 2 days.",
+      "risk_level": "Medium",
+      "risk_justification": "Proposal sent, awaiting feedback.",
+      "generated_at": "2026-06-23T14:00:00Z"
+    },
+    {
+      "id": "14",
+      "lead_id": "14",
+      "icebreaker": "Hi Norman, just left a voicemail...",
+      "next_step": "Send an email summarizing features.",
+      "risk_level": "Medium",
+      "risk_justification": "No direct contact yet.",
+      "generated_at": "2026-06-24T09:30:00Z"
+    },
+    {
+      "id": "15",
+      "lead_id": "15",
+      "icebreaker": "Hi Cave, congratulations on signing the MSA...",
+      "next_step": "Schedule kickoff call.",
+      "risk_level": "Low",
+      "risk_justification": "Deal won.",
+      "generated_at": "2026-06-25T13:45:00Z"
+    },
+    {
+      "id": "16",
+      "lead_id": "16",
+      "icebreaker": "Hi Gordon, sorry to hear about the restructuring...",
+      "next_step": "Check back in 6 months.",
+      "risk_level": "High",
+      "risk_justification": "Project on hold.",
+      "generated_at": "2026-06-26T10:15:00Z"
+    },
+    {
+      "id": "17",
+      "lead_id": "17",
+      "icebreaker": "Hi Carter, regarding the custom integrations...",
+      "next_step": "Involve sales engineer.",
+      "risk_level": "Medium",
+      "risk_justification": "Complex technical requirements.",
+      "generated_at": "2026-06-28T08:45:00Z"
+    },
+    {
+      "id": "18",
+      "lead_id": "18",
+      "icebreaker": "Hi Eldon, here is the revised quote...",
+      "next_step": "Awaiting approval on new quote.",
+      "risk_level": "Medium",
+      "risk_justification": "Negotiating scope.",
+      "generated_at": "2026-06-28T11:20:00Z"
+    },
+    {
+      "id": "19",
+      "lead_id": "19",
+      "icebreaker": "Hi Dick, received the PO...",
+      "next_step": "Handover to CS team.",
+      "risk_level": "Low",
+      "risk_justification": "Deal won.",
+      "generated_at": "2026-06-20T16:00:00Z"
+    },
+    {
+      "id": "20",
+      "lead_id": "20",
+      "icebreaker": "Hi Dr. Evil, reaching out to see if...",
+      "next_step": "Follow up next week.",
+      "risk_level": "High",
+      "risk_justification": "Cold outreach, no response.",
+      "generated_at": "2026-06-21T09:00:00Z"
+    },
+    {
+      "id": "21",
+      "lead_id": "21",
+      "icebreaker": "Hi Shelby, following up on the ROI analysis...",
+      "next_step": "Schedule a decision call.",
+      "risk_level": "Low",
+      "risk_justification": "Strong business case presented.",
+      "generated_at": "2026-06-22T10:30:00Z"
+    },
+    {
+      "id": "22",
+      "lead_id": "22",
+      "icebreaker": "Hi John, understand you chose the incumbent...",
+      "next_step": "Add to long-term nurture.",
+      "risk_level": "High",
+      "risk_justification": "Lost to incumbent.",
+      "generated_at": "2026-06-23T13:15:00Z"
+    },
+    {
+      "id": "23",
+      "lead_id": "23",
+      "icebreaker": "Hi Excella, attached is the completed security questionnaire...",
+      "next_step": "Awaiting infosec approval.",
+      "risk_level": "Medium",
+      "risk_justification": "Pending security review.",
+      "generated_at": "2026-06-24T15:45:00Z"
+    },
+    {
+      "id": "24",
+      "lead_id": "24",
+      "icebreaker": "Hi Heihachi, great to have the contract signed...",
+      "next_step": "Send welcome gift.",
+      "risk_level": "Low",
+      "risk_justification": "Deal won.",
+      "generated_at": "2026-06-25T11:30:00Z"
+    },
+    {
+      "id": "25",
+      "lead_id": "25",
+      "icebreaker": "Hi Kazuya, following up on our discovery call...",
+      "next_step": "Send tailored case studies.",
+      "risk_level": "Low",
+      "risk_justification": "Good initial fit identified.",
+      "generated_at": "2026-06-26T14:00:00Z"
+    },
+    {
+      "id": "26",
+      "lead_id": "26",
+      "icebreaker": "Hi Bison, here is the updated pricing...",
+      "next_step": "Follow up on pricing review.",
+      "risk_level": "Medium",
+      "risk_justification": "Price negotiation ongoing.",
+      "generated_at": "2026-06-27T09:15:00Z"
+    },
+    {
+      "id": "27",
+      "lead_id": "27",
+      "icebreaker": "Hi Seth, completely understand the budget cuts...",
+      "next_step": "Check in next fiscal year.",
+      "risk_level": "High",
+      "risk_justification": "No budget.",
+      "generated_at": "2026-06-28T16:30:00Z"
+    },
+    {
+      "id": "28",
+      "lead_id": "28",
+      "icebreaker": "Hi Gill, I've compiled a list of references...",
+      "next_step": "Coordinate reference calls.",
+      "risk_level": "Low",
+      "risk_justification": "Client validating claims.",
+      "generated_at": "2026-06-20T11:45:00Z"
+    },
+    {
+      "id": "29",
+      "lead_id": "29",
+      "icebreaker": "Hi Boss, payment confirmed...",
+      "next_step": "Start implementation.",
+      "risk_level": "Low",
+      "risk_justification": "Deal won.",
+      "generated_at": "2026-06-21T13:30:00Z"
+    },
+    {
+      "id": "30",
+      "lead_id": "30",
+      "icebreaker": "Hi Snake, thanks for connecting on LinkedIn...",
+      "next_step": "Try to schedule a 15-min intro.",
+      "risk_level": "Medium",
+      "risk_justification": "Early stage engagement.",
+      "generated_at": "2026-06-22T15:00:00Z"
+    },
+    {
+      "id": "31",
+      "lead_id": "31",
+      "icebreaker": "Hi Roy, following up on the legal review...",
+      "next_step": "Address redlines.",
+      "risk_level": "Medium",
+      "risk_justification": "Stuck in legal.",
+      "generated_at": "2026-06-23T10:15:00Z"
+    },
+    {
+      "id": "32",
+      "lead_id": "32",
+      "icebreaker": "Hi Otacon, I understand you are building in-house...",
+      "next_step": "Close out opportunity.",
+      "risk_level": "High",
+      "risk_justification": "Decided to build vs buy.",
+      "generated_at": "2026-06-24T14:45:00Z"
+    },
+    {
+      "id": "33",
+      "lead_id": "33",
+      "icebreaker": "Hi Liquid, any questions from your internal review?",
+      "next_step": "Offer to join their internal meeting.",
+      "risk_level": "Medium",
+      "risk_justification": "Awaiting internal consensus.",
+      "generated_at": "2026-06-25T09:30:00Z"
+    },
+    {
+      "id": "34",
+      "lead_id": "34",
+      "icebreaker": "Hi Zero, deal is closed...",
+      "next_step": "Introduce Customer Success Manager.",
+      "risk_level": "Low",
+      "risk_justification": "Deal won.",
+      "generated_at": "2026-06-26T11:00:00Z"
+    },
+    {
+      "id": "35",
+      "lead_id": "35",
+      "icebreaker": "Hi Warren, thought this whitepaper might be useful...",
+      "next_step": "Call to discuss the whitepaper.",
+      "risk_level": "Medium",
+      "risk_justification": "Providing value to generate interest.",
+      "generated_at": "2026-06-27T13:15:00Z"
+    },
+    {
+      "id": "36",
+      "lead_id": "36",
+      "icebreaker": "Hi Dusan, regarding the SLA terms...",
+      "next_step": "Involve our legal counsel.",
+      "risk_level": "Medium",
+      "risk_justification": "SLA negotiation.",
+      "generated_at": "2026-06-28T16:10:00Z"
+    },
+    {
+      "id": "37",
+      "lead_id": "37",
+      "icebreaker": "Hi John-Caleb, since there's no budget this quarter...",
+      "next_step": "Follow up in Q3.",
+      "risk_level": "High",
+      "risk_justification": "Timing issue.",
+      "generated_at": "2026-06-20T10:30:00Z"
+    },
+    {
+      "id": "38",
+      "lead_id": "38",
+      "icebreaker": "Hi Robert, let's scope out the POC...",
+      "next_step": "Draft POC success criteria.",
+      "risk_level": "Low",
+      "risk_justification": "Moving to technical validation.",
+      "generated_at": "2026-06-21T14:00:00Z"
+    },
+    {
+      "id": "39",
+      "lead_id": "39",
+      "icebreaker": "Hi Stanislaus, great news on the procurement approval...",
+      "next_step": "Finalize paperwork.",
+      "risk_level": "Low",
+      "risk_justification": "Deal won.",
+      "generated_at": "2026-06-22T09:45:00Z"
+    },
+    {
+      "id": "40",
+      "lead_id": "40",
+      "icebreaker": "Hi Andrew, sorry I missed you...",
+      "next_step": "Try email instead of calling.",
+      "risk_level": "High",
+      "risk_justification": "Hard to reach.",
+      "generated_at": "2026-06-23T11:30:00Z"
+    },
+    {
+      "id": "41",
+      "lead_id": "41",
+      "icebreaker": "Hi Frank, the revised contract is attached...",
+      "next_step": "Awaiting signature.",
+      "risk_level": "Low",
+      "risk_justification": "Contract out for signature.",
+      "generated_at": "2026-06-24T16:15:00Z"
+    },
+    {
+      "id": "42",
+      "lead_id": "42",
+      "icebreaker": "Hi Augustus, I heard about the departure...",
+      "next_step": "Try to find a new champion.",
+      "risk_level": "High",
+      "risk_justification": "Lost champion.",
+      "generated_at": "2026-06-25T10:00:00Z"
+    },
+    {
+      "id": "43",
+      "lead_id": "43",
+      "icebreaker": "Hi Jeremiah, regarding the implementation timeline...",
+      "next_step": "Send project plan.",
+      "risk_level": "Low",
+      "risk_justification": "Planning phase.",
+      "generated_at": "2026-06-26T13:45:00Z"
+    },
+    {
+      "id": "44",
+      "lead_id": "44",
+      "icebreaker": "Hi Jack, looking forward to the kickoff...",
+      "next_step": "Prepare kickoff deck.",
+      "risk_level": "Low",
+      "risk_justification": "Deal won.",
+      "generated_at": "2026-06-27T15:00:00Z"
+    },
+    {
+      "id": "46",
+      "lead_id": "46",
+      "icebreaker": "Hi Wainwright, any updates from the board?",
+      "next_step": "Offer to answer board questions.",
+      "risk_level": "Medium",
+      "risk_justification": "Board review.",
+      "generated_at": "2026-06-20T11:15:00Z"
+    },
+    {
+      "id": "47",
+      "lead_id": "47",
+      "icebreaker": "Hi Torgue, I understand we are more expensive...",
+      "next_step": "Highlight value differentiation.",
+      "risk_level": "High",
+      "risk_justification": "Price objection.",
+      "generated_at": "2026-06-21T14:30:00Z"
+    },
+    {
+      "id": "48",
+      "lead_id": "48",
+      "icebreaker": "Hi Rhys, the technical docs are attached...",
+      "next_step": "Schedule technical Q&A.",
+      "risk_level": "Medium",
+      "risk_justification": "Engineering review.",
+      "generated_at": "2026-06-22T16:00:00Z"
+    },
+    {
+      "id": "49",
+      "lead_id": "49",
+      "icebreaker": "Hi Hector, time to celebrate...",
+      "next_step": "Internal handoff.",
+      "risk_level": "Low",
+      "risk_justification": "Deal won.",
+      "generated_at": "2026-06-23T10:45:00Z"
+    }
   ]
 }
