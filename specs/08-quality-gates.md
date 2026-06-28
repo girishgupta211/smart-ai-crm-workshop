@@ -14,6 +14,8 @@
 | API | Lead validation | Post lead with empty email | Server returns `400 Bad Request` | Pending |
 | API | Update contract | Patch a lead stage | Updated lead returns and UI stays in sync | Pending |
 | AI Integration | Schema alignment | Validate strategy response | `risk_level` and `risk_justification` parse separately | Pending |
+| AI Integration | Mock MCP tools | Run `node scripts/test-mock-mcp-tools.js` | Metrics, context, fallback, validation, and upsert behavior pass | Pending |
+| AI Integration | Mock AI agent | Run `node scripts/test-mock-ai-agent.js` | Agent calls MCP tools in sequence and respects no-context fallback | Pending |
 
 ## Manual Smoke Test
 

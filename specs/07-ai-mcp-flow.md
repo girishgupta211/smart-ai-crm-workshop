@@ -91,3 +91,21 @@ After a successful generation:
 - Replace the current strategy for the lead.
 - Mark the interactions used by `get_lead_context` as `ai_analyzed: true`.
 - Refresh the details drawer strategy pane.
+
+## Mock Tool Test Harness
+
+Before the API and database exist, the same tool contracts can be tested against [../mock_data.json](../mock_data.json):
+
+```sh
+node scripts/test-mock-mcp-tools.js
+```
+
+The mock harness does not call Claude and does not require an API key.
+
+The mock agent workflow can be tested with:
+
+```sh
+node scripts/test-mock-ai-agent.js
+```
+
+This verifies the required agent sequence: metrics lookup, scoped context lookup, fallback when no context exists, and strategy update only after usable context is available.
