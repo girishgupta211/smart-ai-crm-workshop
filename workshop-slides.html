@@ -1,0 +1,1318 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Build an App from Scratch with Claude + MCP</title>
+    <style>
+      :root {
+        --bg: #f5f7fb;
+        --ink: #17202a;
+        --muted: #5e6a78;
+        --line: #d8dee8;
+        --panel: #ffffff;
+        --brand: #155e75;
+        --brand-2: #0f766e;
+        --accent: #b45309;
+        --danger: #b91c1c;
+        --soft: #e8f4f3;
+        --soft-2: #fff7ed;
+        --shadow: 0 18px 45px rgba(23, 32, 42, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        background: var(--bg);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .deck {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        padding: 24px;
+        gap: 16px;
+      }
+
+      .slide-frame {
+        width: min(1180px, 100%);
+        aspect-ratio: 16 / 9;
+        max-height: calc(100vh - 112px);
+        margin: auto;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .slide {
+        display: none;
+        width: 100%;
+        height: 100%;
+        padding: clamp(28px, 4.5vw, 56px);
+      }
+
+      .slide.active {
+        display: grid;
+      }
+
+      .slide.two-column {
+        grid-template-columns: 1fr 1fr;
+        gap: 34px;
+        align-items: center;
+      }
+
+      .slide.stacked {
+        grid-template-rows: auto 1fr;
+        gap: 26px;
+      }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        color: var(--brand);
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2 {
+        margin: 0;
+        letter-spacing: 0;
+        line-height: 1.05;
+      }
+
+      h1 {
+        max-width: 920px;
+        font-size: clamp(40px, 6vw, 76px);
+      }
+
+      h2 {
+        font-size: clamp(34px, 5vw, 58px);
+      }
+
+      h3 {
+        margin: 0 0 10px;
+        font-size: clamp(18px, 2vw, 24px);
+        line-height: 1.18;
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.55;
+        font-size: clamp(16px, 1.7vw, 21px);
+      }
+
+      .lead {
+        max-width: 760px;
+        margin-top: 20px;
+        font-size: clamp(19px, 2.2vw, 28px);
+        color: #304052;
+      }
+
+      .meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 30px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 36px;
+        padding: 7px 12px;
+        border: 1px solid var(--line);
+        background: #f8fafc;
+        color: #344256;
+        font-weight: 700;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+
+      .panel {
+        border: 1px solid var(--line);
+        background: #fbfcfe;
+        border-radius: 8px;
+        padding: 18px;
+      }
+
+      .panel.strong {
+        background: var(--soft);
+        border-color: #a7d7d2;
+      }
+
+      .panel.warn {
+        background: var(--soft-2);
+        border-color: #fed7aa;
+      }
+
+      .flow-line {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+        align-items: stretch;
+      }
+
+      .step {
+        min-height: 112px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 14px;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .step b,
+      .tool b {
+        font-size: 15px;
+      }
+
+      .step span,
+      .tool span,
+      .mini span {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .tool-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      .tool {
+        min-height: 156px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        padding: 16px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .tool code,
+      .command code {
+        color: var(--brand);
+        font-weight: 800;
+      }
+
+      .compare {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .compare .panel {
+        min-height: 285px;
+        display: grid;
+        grid-template-rows: auto auto 1fr;
+        gap: 12px;
+      }
+
+      .list {
+        margin: 0;
+        padding-left: 18px;
+        color: #334155;
+        font-size: clamp(15px, 1.5vw, 19px);
+        line-height: 1.48;
+      }
+
+      .list li + li {
+        margin-top: 9px;
+      }
+
+      .diagram {
+        display: grid;
+        gap: 12px;
+      }
+
+      .mini {
+        display: grid;
+        grid-template-columns: 132px 1fr;
+        align-items: center;
+        gap: 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 12px;
+        background: #fff;
+      }
+
+      .mini b {
+        color: var(--brand);
+      }
+
+      .crm-preview {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .crm-top {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1px;
+        background: var(--line);
+      }
+
+      .metric {
+        padding: 16px;
+        background: #f8fafc;
+      }
+
+      .metric span {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .metric b {
+        display: block;
+        margin-top: 8px;
+        font-size: clamp(22px, 3vw, 36px);
+      }
+
+      .crm-body {
+        display: grid;
+        grid-template-columns: 1fr 0.88fr;
+        min-height: 288px;
+      }
+
+      .table {
+        border-right: 1px solid var(--line);
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 100px 90px;
+        gap: 10px;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--line);
+        font-size: 14px;
+      }
+
+      .row.header {
+        color: var(--muted);
+        background: #f8fafc;
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .badge {
+        width: fit-content;
+        border-radius: 8px;
+        padding: 4px 8px;
+        background: #e8f4f3;
+        color: var(--brand);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .strategy {
+        padding: 16px;
+        display: grid;
+        align-content: start;
+        gap: 14px;
+      }
+
+      .mobile-slide {
+        gap: 14px;
+      }
+
+      .mobile-slide h2 {
+        font-size: clamp(34px, 4.5vw, 52px);
+      }
+
+      .mobile-slide .lead {
+        margin-top: 10px;
+        font-size: clamp(16px, 1.7vw, 22px);
+      }
+
+      .mobile-shots {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+      }
+
+      .phone-shot {
+        min-width: 0;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: #111827;
+        padding: 8px;
+        box-shadow: 0 12px 30px rgba(23, 32, 42, 0.12);
+      }
+
+      .phone-screen {
+        height: 326px;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #f8fafc;
+        display: grid;
+        grid-template-rows: auto 1fr;
+      }
+
+      .phone-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        min-height: 42px;
+        padding: 10px 12px;
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .phone-bar b {
+        font-size: 13px;
+      }
+
+      .phone-bar span {
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+      .phone-content {
+        min-height: 0;
+        padding: 10px;
+        display: grid;
+        align-content: start;
+        gap: 8px;
+        overflow: hidden;
+      }
+
+      .mobile-metrics {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 7px;
+      }
+
+      .mobile-card {
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 8px;
+        padding: 9px;
+      }
+
+      .mobile-card b {
+        display: block;
+        font-size: 12px;
+      }
+
+      .mobile-card span {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.28;
+      }
+
+      .mobile-card.accent {
+        background: var(--soft);
+        border-color: #a7d7d2;
+      }
+
+      .mobile-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        align-items: center;
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 8px;
+        padding: 8px;
+      }
+
+      .mobile-row b {
+        display: block;
+        font-size: 12px;
+      }
+
+      .mobile-row span {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 10.5px;
+      }
+
+      .status-chip {
+        border-radius: 8px;
+        padding: 4px 7px;
+        background: #eff6ff;
+        color: #1d4ed8;
+        font-size: 10px;
+        font-weight: 900;
+      }
+
+      .timeline-item {
+        border-left: 3px solid var(--brand);
+        background: #fff;
+        border-radius: 8px;
+        padding: 8px 9px;
+      }
+
+      .timeline-item b {
+        display: block;
+        font-size: 12px;
+      }
+
+      .timeline-item span {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 10.5px;
+        line-height: 1.25;
+      }
+
+      .input-box {
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 8px;
+        padding: 9px;
+        display: grid;
+        gap: 7px;
+      }
+
+      .input-line {
+        height: 9px;
+        border-radius: 999px;
+        background: #dbe3ef;
+      }
+
+      .input-line.short {
+        width: 62%;
+      }
+
+      .mobile-button {
+        display: grid;
+        place-items: center;
+        height: 30px;
+        border-radius: 8px;
+        background: var(--brand);
+        color: #fff;
+        font-size: 11px;
+        font-weight: 900;
+      }
+
+      .phone-caption {
+        margin-top: 8px;
+        color: #334155;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .command {
+        border: 1px solid #bfdbfe;
+        background: #eff6ff;
+        border-radius: 8px;
+        padding: 13px;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .mcp-server-slide {
+        gap: 18px;
+      }
+
+      .mcp-server-slide h2 {
+        font-size: clamp(34px, 4.6vw, 56px);
+      }
+
+      .mcp-server-slide .lead {
+        margin-top: 12px;
+        font-size: clamp(17px, 1.9vw, 24px);
+      }
+
+      .mcp-map {
+        display: grid;
+        grid-template-columns: 0.92fr 1.08fr 0.92fr;
+        gap: 14px;
+        align-items: stretch;
+      }
+
+      .mcp-node {
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 8px;
+        padding: 16px;
+        display: grid;
+        align-content: start;
+        gap: 12px;
+      }
+
+      .mcp-node.server {
+        background: var(--soft);
+        border-color: #a7d7d2;
+      }
+
+      .mcp-node b {
+        color: var(--brand);
+        font-size: 18px;
+      }
+
+      .mcp-node span {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.38;
+      }
+
+      .mcp-flow {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+      }
+
+      .mcp-flow .path-step {
+        background: #fff;
+      }
+
+      .architecture {
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr;
+        gap: 16px;
+        align-items: stretch;
+      }
+
+      .layers {
+        display: grid;
+        gap: 8px;
+      }
+
+      .layer {
+        display: grid;
+        grid-template-columns: 112px 1fr;
+        gap: 12px;
+        align-items: center;
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 8px;
+        padding: 10px 12px;
+      }
+
+      .layer b {
+        color: var(--brand);
+      }
+
+      .layer span {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.32;
+      }
+
+      .request-path {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .path-step {
+        border: 1px solid var(--line);
+        background: #fbfcfe;
+        border-radius: 8px;
+        padding: 10px;
+      }
+
+      .path-step b {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .path-step span {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.3;
+      }
+
+      .architecture-slide {
+        gap: 16px;
+      }
+
+      .architecture-slide h2 {
+        font-size: clamp(34px, 4.5vw, 52px);
+      }
+
+      .architecture-slide .lead {
+        margin-top: 12px;
+        font-size: clamp(17px, 1.8vw, 23px);
+      }
+
+      .architecture-slide .panel {
+        padding: 14px;
+      }
+
+      .architecture-slide h3 {
+        margin-bottom: 8px;
+        font-size: clamp(18px, 1.8vw, 23px);
+      }
+
+      .mcp-slide {
+        gap: 16px;
+      }
+
+      .mcp-slide h2 {
+        font-size: clamp(34px, 4.6vw, 56px);
+      }
+
+      .mcp-slide .lead {
+        margin-top: 12px;
+        font-size: clamp(17px, 1.9vw, 24px);
+      }
+
+      .mcp-slide .tool {
+        min-height: 136px;
+      }
+
+      .toolbar {
+        width: min(1180px, 100%);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: auto 1fr auto auto;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .nav-button {
+        min-width: 84px;
+        height: 42px;
+        border: 1px solid var(--line);
+        background: #fff;
+        color: var(--ink);
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 800;
+      }
+
+      .nav-button:hover,
+      .nav-button:focus-visible {
+        border-color: var(--brand);
+        outline: none;
+      }
+
+      .dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .dot {
+        width: 34px;
+        height: 8px;
+        border: 0;
+        border-radius: 999px;
+        background: #cbd5e1;
+        cursor: pointer;
+      }
+
+      .dot.active {
+        background: var(--brand);
+      }
+
+      .counter {
+        color: var(--muted);
+        font-weight: 800;
+      }
+
+      .slide-number {
+        position: absolute;
+        right: 24px;
+        bottom: 20px;
+        color: #8a96a6;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      @media (max-width: 820px) {
+        .deck {
+          padding: 10px;
+        }
+
+        .slide-frame {
+          aspect-ratio: auto;
+          min-height: calc(100vh - 84px);
+          max-height: none;
+        }
+
+        .slide,
+        .slide.two-column {
+          display: none;
+          grid-template-columns: 1fr;
+          padding: 24px;
+          overflow: auto;
+        }
+
+        .slide.active {
+          display: grid;
+        }
+
+        .flow-line,
+        .tool-grid,
+        .mcp-map,
+        .mcp-flow,
+        .compare,
+        .mobile-shots,
+        .crm-body,
+        .architecture {
+          grid-template-columns: 1fr;
+        }
+
+        .toolbar {
+          grid-template-columns: auto auto auto;
+        }
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+
+        .deck {
+          display: block;
+          padding: 0;
+        }
+
+        .slide-frame {
+          width: 100%;
+          max-height: none;
+          aspect-ratio: auto;
+          border: 0;
+          box-shadow: none;
+        }
+
+        .slide,
+        .slide.active {
+          display: grid;
+          min-height: 100vh;
+          page-break-after: always;
+        }
+
+        .toolbar {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="deck">
+      <div class="slide-frame" aria-live="polite">
+        <section class="slide two-column active" data-title="How AI coding tools work">
+          <div>
+            <p class="eyebrow">Slide 1 / Foundations</p>
+            <h1>How Claude, Cursor, and Codex work</h1>
+            <p class="lead">
+              AI coding tools are context engines plus action interfaces. They read your goal,
+              inspect files, propose changes, run checks, and improve through feedback.
+            </p>
+            <div class="meta-row">
+              <span class="pill">Prompt</span>
+              <span class="pill">Project files</span>
+              <span class="pill">Constraints</span>
+              <span class="pill">Feedback loop</span>
+            </div>
+          </div>
+          <div class="diagram">
+            <div class="mini">
+              <b>Input</b>
+              <span>User goal, selected files, terminal output, docs, errors</span>
+            </div>
+            <div class="mini">
+              <b>Reason</b>
+              <span>Infer intent, detect patterns, plan edits, choose next actions</span>
+            </div>
+            <div class="mini">
+              <b>Act</b>
+              <span>Write code, explain tradeoffs, run tests, revise implementation</span>
+            </div>
+            <div class="panel warn">
+              <h3>Key idea</h3>
+              <p>Better context produces better output. AI is useful, but it still needs specs, tests, and review.</p>
+            </div>
+          </div>
+          <span class="slide-number">1</span>
+        </section>
+
+        <section class="slide stacked" data-title="Claude vs Cursor vs Codex">
+          <div>
+            <p class="eyebrow">Slide 2 / Tool choices</p>
+            <h2>Claude vs Cursor vs Codex</h2>
+            <p class="lead">Same core idea, different surfaces for thinking, editing, and repo-level execution.</p>
+          </div>
+          <div class="compare">
+            <div class="panel strong">
+              <h3>Claude</h3>
+              <p>Best for reasoning before implementation.</p>
+              <ul class="list">
+                <li>PRDs and product thinking</li>
+                <li>Architecture tradeoffs</li>
+                <li>Code review and explanation</li>
+                <li>Prompt and workflow design</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Cursor</h3>
+              <p>Best inside the editor while writing code.</p>
+              <ul class="list">
+                <li>Inline edits</li>
+                <li>Codebase navigation</li>
+                <li>Fast refactors</li>
+                <li>Pair-programming loops</li>
+              </ul>
+            </div>
+            <div class="panel warn">
+              <h3>Codex</h3>
+              <p>Best for repo-level tasks with terminal checks.</p>
+              <ul class="list">
+                <li>Multi-file changes</li>
+                <li>Scripts and tests</li>
+                <li>Debugging from logs</li>
+                <li>Implementation to validation</li>
+              </ul>
+            </div>
+          </div>
+          <span class="slide-number">2</span>
+        </section>
+
+        <section class="slide stacked mcp-server-slide" data-title="MCP server bridge">
+          <div>
+            <p class="eyebrow">Slide 3 / Tool bridge</p>
+            <h2>What is an MCP server?</h2>
+            <p class="lead">An MCP server is the bridge between an AI chat and real tools. The chat decides what it needs, the MCP server safely exposes what it is allowed to use.</p>
+          </div>
+          <div class="mcp-map">
+            <div class="mcp-node">
+              <b>AI chat</b>
+              <span>Claude, Cursor, or Codex receives your request and decides whether it needs external facts or actions.</span>
+              <span>Example: "Generate a strategy for lead 2."</span>
+            </div>
+            <div class="mcp-node server">
+              <b>MCP server</b>
+              <span>Defines available tools, validates inputs, runs controlled code or API calls, and returns structured results.</span>
+              <span>It is the safety boundary between model reasoning and your systems.</span>
+            </div>
+            <div class="mcp-node">
+              <b>Tools + data</b>
+              <span>CRM data, files, GitHub, databases, APIs, docs, and internal business actions.</span>
+              <span>The model does not access everything directly.</span>
+            </div>
+          </div>
+          <div class="mcp-flow">
+            <div class="path-step">
+              <b>1. User asks</b>
+              <span>Chat gets a goal.</span>
+            </div>
+            <div class="path-step">
+              <b>2. Model plans</b>
+              <span>It chooses a tool.</span>
+            </div>
+            <div class="path-step">
+              <b>3. Server runs</b>
+              <span>MCP executes safely.</span>
+            </div>
+            <div class="path-step">
+              <b>4. Result returns</b>
+              <span>Facts go back to AI.</span>
+            </div>
+            <div class="path-step">
+              <b>5. AI answers</b>
+              <span>Now grounded in data.</span>
+            </div>
+          </div>
+          <span class="slide-number">3</span>
+        </section>
+
+        <section class="slide stacked" data-title="AI product workflow">
+          <div>
+            <p class="eyebrow">Slide 4 / Repeatable workflow</p>
+            <h2>From idea to working app</h2>
+            <p class="lead">The practical workflow is iterative: create context, build a thin slice, test it, then widen the system.</p>
+          </div>
+          <div class="flow-line" aria-label="Product workflow">
+            <div class="step">
+              <b>Idea</b>
+              <span>What problem are we solving?</span>
+            </div>
+            <div class="step">
+              <b>Spec</b>
+              <span>What should the product do?</span>
+            </div>
+            <div class="step">
+              <b>Mock Data</b>
+              <span>What does realistic state look like?</span>
+            </div>
+            <div class="step">
+              <b>UI + Logic</b>
+              <span>How does the user move through it?</span>
+            </div>
+            <div class="step">
+              <b>Tests</b>
+              <span>What proves it is working?</span>
+            </div>
+          </div>
+          <div class="panel strong">
+            <h3>Iteration loop</h3>
+            <p>Prompt -> inspect output -> edit -> run checks -> refine. This is how we keep AI-generated work grounded.</p>
+          </div>
+          <span class="slide-number">4</span>
+        </section>
+
+        <section class="slide two-column" data-title="What we build">
+          <div>
+            <p class="eyebrow">Slide 5 / Live build</p>
+            <h2>Smart AI CRM + Lead Tracker</h2>
+            <p class="lead">
+              We will build a CRM workflow where the user selects a lead, reviews interactions,
+              and asks an AI agent for a sales strategy.
+            </p>
+            <div class="panel">
+              <h3>Example lead</h3>
+              <p><b>Namaste CloudWorks</b><br>Stage: Proposal<br>Latest note: Buying committee asked for revised INR pricing before signature.</p>
+            </div>
+          </div>
+          <div class="crm-preview">
+            <div class="crm-top">
+              <div class="metric"><span>Open pipeline</span><b>INR 1.2Cr</b></div>
+              <div class="metric"><span>Won deals</span><b>10</b></div>
+              <div class="metric"><span>Win rate</span><b>52.6%</b></div>
+            </div>
+            <div class="crm-body">
+              <div class="table">
+                <div class="row header"><span>Company</span><span>Stage</span><span>Risk</span></div>
+                <div class="row"><span>Namaste CloudWorks</span><span>Proposal</span><span class="badge">Medium</span></div>
+                <div class="row"><span>Mumbai MarketOps</span><span>Contacted</span><span class="badge">Low</span></div>
+                <div class="row"><span>Bhubaneswar Retail AI</span><span>Lead</span><span class="badge">New</span></div>
+              </div>
+              <div class="strategy">
+                <h3>AI Action Workspace</h3>
+                <p><b>Icebreaker</b><br>Following up on your latest meeting about revised INR pricing.</p>
+                <p><b>Next step</b><br>Confirm blockers, procurement owner, and approval date.</p>
+              </div>
+            </div>
+          </div>
+          <span class="slide-number">5</span>
+        </section>
+
+        <section class="slide stacked mobile-slide" data-title="Mobile app flow">
+          <div>
+            <p class="eyebrow">Slide 6 / Mobile flow</p>
+            <h2>Smart AI CRM mobile screens</h2>
+            <p class="lead">One mobile-first view of the full CRM loop: pipeline, lead context, note capture, and AI strategy.</p>
+          </div>
+          <div class="mobile-shots">
+            <div>
+              <div class="phone-shot">
+                <div class="phone-screen">
+                  <div class="phone-bar">
+                    <b>Dashboard</b>
+                    <span>CRM</span>
+                  </div>
+                  <div class="phone-content">
+                    <div class="mobile-metrics">
+                      <div class="mobile-card accent">
+                        <b>INR 1.2Cr</b>
+                        <span>Open pipeline</span>
+                      </div>
+                      <div class="mobile-card">
+                        <b>52.6%</b>
+                        <span>Win rate</span>
+                      </div>
+                    </div>
+                    <div class="mobile-row">
+                      <div>
+                        <b>Namaste CloudWorks</b>
+                        <span>Priya Nair • INR pricing review</span>
+                      </div>
+                      <div class="status-chip">Proposal</div>
+                    </div>
+                    <div class="mobile-row">
+                      <div>
+                        <b>Mumbai MarketOps</b>
+                        <span>Ananya Shah • WhatsApp reminders</span>
+                      </div>
+                      <div class="status-chip">Contacted</div>
+                    </div>
+                    <div class="mobile-row">
+                      <div>
+                        <b>Bhubaneswar Retail AI</b>
+                        <span>Tanmay Mohanty • New lead</span>
+                      </div>
+                      <div class="status-chip">Lead</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="phone-shot">
+                <div class="phone-screen">
+                  <div class="phone-bar">
+                    <b>Lead Details</b>
+                    <span>Proposal</span>
+                  </div>
+                  <div class="phone-content">
+                    <div class="mobile-card accent">
+                      <b>Namaste CloudWorks</b>
+                      <span>Priya Nair • Deal value INR 15,000</span>
+                    </div>
+                    <div class="timeline-item">
+                      <b>Meeting • Today</b>
+                      <span>Buying committee asked for revised INR pricing before signature.</span>
+                    </div>
+                    <div class="timeline-item">
+                      <b>Call • Today</b>
+                      <span>Discussed pilot scope for South and West India sales teams.</span>
+                    </div>
+                    <div class="timeline-item">
+                      <b>Email • Earlier</b>
+                      <span>Shared GST-friendly proposal and onboarding checklist.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="phone-shot">
+                <div class="phone-screen">
+                  <div class="phone-bar">
+                    <b>Add Note</b>
+                    <span>Call</span>
+                  </div>
+                  <div class="phone-content">
+                    <div class="mobile-card">
+                      <b>New interaction</b>
+                      <span>Capture fresh context before generating strategy.</span>
+                    </div>
+                    <div class="input-box">
+                      <b>Type</b>
+                      <div class="input-line short"></div>
+                    </div>
+                    <div class="input-box">
+                      <b>Notes</b>
+                      <div class="input-line"></div>
+                      <div class="input-line"></div>
+                      <div class="input-line short"></div>
+                    </div>
+                    <div class="mobile-button">Save interaction</div>
+                    <div class="mobile-card accent">
+                      <b>State update</b>
+                      <span>New note starts with ai_analyzed=false.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="phone-shot">
+                <div class="phone-screen">
+                  <div class="phone-bar">
+                    <b>AI Strategy</b>
+                    <span>MCP</span>
+                  </div>
+                  <div class="phone-content">
+                    <div class="mobile-card accent">
+                      <b>Risk: Medium</b>
+                      <span>Proposal stage with pricing review still open.</span>
+                    </div>
+                    <div class="mobile-card">
+                      <b>Icebreaker</b>
+                      <span>Following up on revised INR pricing before signature.</span>
+                    </div>
+                    <div class="mobile-card">
+                      <b>Next step</b>
+                      <span>Confirm blocker, procurement owner, and approval date.</span>
+                    </div>
+                    <div class="mobile-button">Generate strategy</div>
+                    <div class="mobile-card">
+                      <b>Tools used</b>
+                      <span>metrics -> context -> update strategy</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="slide-number">6</span>
+        </section>
+
+        <section class="slide stacked architecture-slide" data-title="Complete architecture">
+          <div>
+            <p class="eyebrow">Slide 7 / System design</p>
+            <h2>Complete app architecture</h2>
+            <p class="lead">The product has four clear layers: frontend, backend API, database, and AI workflow.</p>
+          </div>
+          <div class="architecture">
+            <div class="layers">
+              <div class="layer">
+                <b>Frontend</b>
+                <span>React + Vite CRM dashboard: metrics, lead grid, details drawer, interaction timeline, AI strategy pane.</span>
+              </div>
+              <div class="layer">
+                <b>Backend API</b>
+                <span>Express REST endpoints for leads, interactions, and strategy generation.</span>
+              </div>
+              <div class="layer">
+                <b>Database</b>
+                <span>PostgreSQL tables: users, leads, interactions, and ai_strategies.</span>
+              </div>
+              <div class="layer">
+                <b>AI Layer</b>
+                <span>Agent workflow plus MCP-style tools that fetch facts and save structured strategy output.</span>
+              </div>
+            </div>
+            <div class="panel strong">
+              <h3>Request path</h3>
+              <div class="request-path">
+                <div class="path-step">
+                  <b>1. User action</b>
+                  <span>User selects a lead and clicks Generate Strategy.</span>
+                </div>
+                <div class="path-step">
+                  <b>2. API orchestration</b>
+                  <span>Backend starts the agent workflow and exposes controlled tool calls.</span>
+                </div>
+                <div class="path-step">
+                  <b>3. Data lookup</b>
+                  <span>Tools read exact metrics and latest interactions from the database.</span>
+                </div>
+                <div class="path-step">
+                  <b>4. UI refresh</b>
+                  <span>Saved strategy returns to the frontend and appears in the AI workspace.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="slide-number">7</span>
+        </section>
+
+        <section class="slide stacked mcp-slide" data-title="MCP and agents">
+          <div>
+            <p class="eyebrow">Slide 8 / Reliable AI systems</p>
+            <h2>MCP and agents: simple mental model</h2>
+            <p class="lead">An agent is the planner. MCP tools are the approved actions it can take. The model should ask tools for facts before it answers.</p>
+          </div>
+          <div class="tool-grid">
+            <div class="tool">
+              <b>1. Agent receives goal</b>
+              <span>User says: generate a strategy for lead 2. The agent plans what information it needs first.</span>
+            </div>
+            <div class="tool">
+              <b>2. Agent calls tools</b>
+              <span><code>get_lead_metrics</code> gives exact numbers. <code>get_lead_context</code> gives latest notes.</span>
+            </div>
+            <div class="tool">
+              <b>3. Agent writes result</b>
+              <span>After reading tool results, it calls <code>update_lead_strategy</code> to save a structured answer.</span>
+            </div>
+          </div>
+          <div class="panel warn">
+            <h3>Why this matters</h3>
+            <p>
+              Without tools, the model may guess. With tools, it follows a predictable path:
+              UI -> Agent -> <code>get_lead_metrics</code> -> <code>get_lead_context</code> ->
+              <code>update_lead_strategy</code> -> UI.
+              Guardrail: no notes means <b>Insufficient context to form strategy</b>.
+            </p>
+          </div>
+          <span class="slide-number">8</span>
+        </section>
+      </div>
+
+      <nav class="toolbar" aria-label="Slide navigation">
+        <button class="nav-button" type="button" id="prev">Previous</button>
+        <div class="dots" id="dots"></div>
+        <div class="counter" id="counter">1 / 8</div>
+        <button class="nav-button" type="button" id="next">Next</button>
+      </nav>
+    </main>
+
+    <script>
+      const slides = Array.from(document.querySelectorAll(".slide"));
+      const dots = document.getElementById("dots");
+      const counter = document.getElementById("counter");
+      const prev = document.getElementById("prev");
+      const next = document.getElementById("next");
+      let current = readSlideFromHash();
+
+      slides.forEach((slide, index) => {
+        const dot = document.createElement("button");
+        dot.className = "dot";
+        dot.type = "button";
+        dot.setAttribute("aria-label", `Go to slide ${index + 1}: ${slide.dataset.title}`);
+        dot.addEventListener("click", () => showSlide(index));
+        dots.appendChild(dot);
+      });
+
+      prev.addEventListener("click", () => showSlide(current - 1));
+      next.addEventListener("click", () => showSlide(current + 1));
+      window.addEventListener("hashchange", () => showSlide(readSlideFromHash(), false));
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
+          event.preventDefault();
+          showSlide(current + 1);
+        }
+        if (event.key === "ArrowLeft" || event.key === "PageUp") {
+          event.preventDefault();
+          showSlide(current - 1);
+        }
+        if (event.key === "Home") {
+          event.preventDefault();
+          showSlide(0);
+        }
+        if (event.key === "End") {
+          event.preventDefault();
+          showSlide(slides.length - 1);
+        }
+      });
+
+      showSlide(current, false);
+
+      function showSlide(index, updateHash = true) {
+        current = Math.min(Math.max(index, 0), slides.length - 1);
+        slides.forEach((slide, slideIndex) => {
+          slide.classList.toggle("active", slideIndex === current);
+        });
+        Array.from(dots.children).forEach((dot, dotIndex) => {
+          dot.classList.toggle("active", dotIndex === current);
+          dot.setAttribute("aria-current", dotIndex === current ? "step" : "false");
+        });
+        counter.textContent = `${current + 1} / ${slides.length}`;
+        prev.disabled = current === 0;
+        next.disabled = current === slides.length - 1;
+        if (updateHash) {
+          history.replaceState(null, "", `#slide-${current + 1}`);
+        }
+      }
+
+      function readSlideFromHash() {
+        const match = window.location.hash.match(/^#slide-(\d+)$/);
+        if (!match) return 0;
+        return Math.min(Math.max(Number(match[1]) - 1, 0), slides.length - 1);
+      }
+    </script>
+  </body>
+</html>

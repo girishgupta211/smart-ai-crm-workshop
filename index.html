@@ -1,0 +1,2040 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Smart AI CRM</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23155e75'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-size='13' font-family='Arial' font-weight='700' fill='white'%3EAI%3C/text%3E%3C/svg%3E">
+    <style>
+      :root {
+        --bg: #f6f8fb;
+        --surface: #ffffff;
+        --surface-soft: #f8fafc;
+        --ink: #17202a;
+        --muted: #64748b;
+        --line: #dbe3ef;
+        --brand: #155e75;
+        --brand-soft: #e8f4f3;
+        --warn: #b45309;
+        --danger: #b91c1c;
+        --success: #047857;
+        --shadow: 0 16px 42px rgba(23, 32, 42, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--bg);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      input {
+        font: inherit;
+      }
+
+      .app-shell {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: auto 1fr;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.92);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(12px);
+      }
+
+      .topbar-inner,
+      .main {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar-inner {
+        min-height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+
+      .brand-mark {
+        width: 36px;
+        height: 36px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        color: #fff;
+        background: var(--brand);
+        font-weight: 900;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: clamp(20px, 3vw, 28px);
+        letter-spacing: 0;
+      }
+
+      .subtitle {
+        color: var(--muted);
+        font-size: 14px;
+        margin-top: 2px;
+      }
+
+      .stage-chip {
+        border: 1px solid #a7d7d2;
+        background: var(--brand-soft);
+        color: var(--brand);
+        border-radius: 8px;
+        padding: 8px 10px;
+        font-size: 13px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .main {
+        padding: 28px 0 44px;
+        display: grid;
+        gap: 22px;
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .section-heading h2 {
+        font-size: clamp(22px, 3vw, 34px);
+      }
+
+      .section-heading p {
+        max-width: 620px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .metric-card {
+        border: 1px solid var(--line);
+        background: var(--surface);
+        border-radius: 8px;
+        padding: 18px;
+        box-shadow: var(--shadow);
+      }
+
+      .metric-label {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .metric-value {
+        display: block;
+        margin-top: 10px;
+        font-size: clamp(24px, 4vw, 38px);
+        line-height: 1;
+        font-weight: 900;
+      }
+
+      .metric-note {
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .table-card {
+        border: 1px solid var(--line);
+        background: var(--surface);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .table-header {
+        min-height: 58px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 16px 18px;
+        border-bottom: 1px solid var(--line);
+        background: var(--surface-soft);
+      }
+
+      .table-header strong {
+        font-size: 16px;
+      }
+
+      .table-header span {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .table-header-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        text-align: right;
+      }
+
+      .secondary-button {
+        min-height: 36px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 8px 11px;
+        color: var(--ink);
+        background: #fff;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .secondary-button:hover,
+      .secondary-button:focus-visible {
+        border-color: var(--brand);
+        color: var(--brand);
+        background: var(--brand-soft);
+        outline: none;
+      }
+
+      .table-controls {
+        display: grid;
+        grid-template-columns: minmax(260px, 1fr) auto;
+        gap: 12px;
+        padding: 14px 18px;
+        border-bottom: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .table-controls label {
+        display: grid;
+        gap: 6px;
+      }
+
+      .search-input {
+        width: 100%;
+        min-height: 40px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 9px 12px;
+        color: var(--ink);
+        background: var(--surface-soft);
+      }
+
+      .search-input:focus {
+        border-color: var(--brand);
+        outline: 3px solid rgba(21, 94, 117, 0.14);
+      }
+
+      .sort-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: flex-end;
+      }
+
+      .sort-button {
+        min-height: 40px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 8px 10px;
+        color: var(--ink);
+        background: #fff;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .sort-button:hover,
+      .sort-button:focus-visible,
+      .sort-button.active {
+        border-color: var(--brand);
+        color: var(--brand);
+        background: var(--brand-soft);
+        outline: none;
+      }
+
+      .table-scroll {
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        min-width: 940px;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 13px 14px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        vertical-align: middle;
+      }
+
+      th {
+        color: var(--muted);
+        background: #fbfcfe;
+        font-size: 12px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      td {
+        font-size: 14px;
+      }
+
+      .editable-cell {
+        min-width: 150px;
+      }
+
+      .editable-trigger {
+        width: 100%;
+        min-height: 42px;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        padding: 6px 8px;
+        color: inherit;
+        background: transparent;
+        cursor: text;
+        font: inherit;
+        text-align: left;
+      }
+
+      .editable-trigger:hover,
+      .editable-trigger:focus-visible {
+        border-color: var(--brand);
+        background: var(--brand-soft);
+        outline: none;
+      }
+
+      .edit-control {
+        display: grid;
+        gap: 6px;
+        min-width: 170px;
+      }
+
+      .edit-input,
+      .edit-select {
+        width: 100%;
+        min-height: 40px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 8px 10px;
+        color: var(--ink);
+        background: #fff;
+        font: inherit;
+      }
+
+      .edit-input:focus,
+      .edit-select:focus {
+        border-color: var(--brand);
+        outline: 3px solid rgba(21, 94, 117, 0.14);
+      }
+
+      .edit-actions {
+        display: flex;
+        gap: 6px;
+      }
+
+      .mini-button {
+        min-height: 30px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 5px 8px;
+        color: var(--ink);
+        background: #fff;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .mini-button.primary {
+        border-color: var(--brand);
+        color: #fff;
+        background: var(--brand);
+      }
+
+      .mini-button:hover,
+      .mini-button:focus-visible {
+        border-color: var(--brand);
+        outline: none;
+      }
+
+      .edit-error {
+        color: var(--danger);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      tbody tr:hover {
+        background: #f8fafc;
+      }
+
+      .lead-row {
+        cursor: pointer;
+      }
+
+      .lead-row.selected {
+        background: #e8f4f3;
+      }
+
+      .lead-row:focus-visible {
+        outline: 3px solid rgba(21, 94, 117, 0.28);
+        outline-offset: -3px;
+      }
+
+      .company {
+        display: grid;
+        gap: 3px;
+      }
+
+      .company strong {
+        font-size: 14px;
+      }
+
+      .company span,
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 26px;
+        border-radius: 8px;
+        padding: 4px 8px;
+        font-size: 12px;
+        font-weight: 900;
+        white-space: nowrap;
+      }
+
+      .stage-lead {
+        color: #1d4ed8;
+        background: #eff6ff;
+      }
+
+      .stage-contacted {
+        color: #0f766e;
+        background: #e8f4f3;
+      }
+
+      .stage-proposal {
+        color: #92400e;
+        background: #fff7ed;
+      }
+
+      .stage-won {
+        color: var(--success);
+        background: #ecfdf5;
+      }
+
+      .stage-lost {
+        color: var(--danger);
+        background: #fef2f2;
+      }
+
+      .risk-low {
+        color: var(--success);
+        background: #ecfdf5;
+      }
+
+      .risk-medium {
+        color: var(--warn);
+        background: #fff7ed;
+      }
+
+      .risk-high {
+        color: var(--danger);
+        background: #fef2f2;
+      }
+
+      .risk-none {
+        color: var(--muted);
+        background: #f1f5f9;
+      }
+
+      .state {
+        border: 1px dashed #b8c4d6;
+        border-radius: 8px;
+        padding: 28px;
+        color: var(--muted);
+        background: #fbfcfe;
+        text-align: center;
+      }
+
+      .error {
+        border: 1px solid #fecaca;
+        background: #fef2f2;
+        color: var(--danger);
+        border-radius: 8px;
+        padding: 14px;
+        font-weight: 700;
+      }
+
+      .drawer-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 20;
+        display: none;
+        background: rgba(15, 23, 42, 0.36);
+      }
+
+      .drawer-backdrop.open {
+        display: block;
+      }
+
+      .drawer {
+        position: fixed;
+        inset: 0 0 0 auto;
+        z-index: 30;
+        width: min(520px, 100%);
+        display: grid;
+        grid-template-rows: auto 1fr;
+        background: var(--surface);
+        border-left: 1px solid var(--line);
+        box-shadow: -18px 0 42px rgba(23, 32, 42, 0.18);
+        transform: translateX(100%);
+        transition: transform 180ms ease;
+      }
+
+      .drawer.open {
+        transform: translateX(0);
+      }
+
+      .drawer[hidden] {
+        display: none;
+      }
+
+      .drawer-header {
+        padding: 20px;
+        border-bottom: 1px solid var(--line);
+        background: var(--surface-soft);
+        display: grid;
+        gap: 14px;
+      }
+
+      .drawer-title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .drawer h2 {
+        font-size: 24px;
+        line-height: 1.15;
+      }
+
+      .drawer-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .close-button {
+        width: 36px;
+        height: 36px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--ink);
+        background: #fff;
+        cursor: pointer;
+        font-size: 22px;
+        line-height: 1;
+      }
+
+      .close-button:hover,
+      .close-button:focus-visible {
+        border-color: var(--brand);
+        outline: none;
+      }
+
+      .drawer-body {
+        min-height: 0;
+        overflow-y: auto;
+        padding: 20px;
+        display: grid;
+        align-content: start;
+        gap: 18px;
+      }
+
+      .detail-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        padding: 16px;
+      }
+
+      .detail-card h3 {
+        margin: 0 0 12px;
+        font-size: 16px;
+      }
+
+      .detail-card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .detail-card-header h3 {
+        margin: 0;
+      }
+
+      .detail-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .detail-item span {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .detail-item b {
+        display: block;
+        margin-top: 4px;
+        font-size: 14px;
+      }
+
+      .strategy-card {
+        display: grid;
+        gap: 14px;
+      }
+
+      .strategy-message {
+        min-height: 18px;
+        color: var(--success);
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .strategy-message.error-text {
+        color: var(--danger);
+      }
+
+      .strategy-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .strategy-notice {
+        border: 1px solid #fed7aa;
+        border-radius: 8px;
+        padding: 10px 12px;
+        color: var(--warn);
+        background: #fff7ed;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .strategy-fields {
+        display: grid;
+        gap: 12px;
+      }
+
+      .strategy-field {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface-soft);
+        padding: 12px;
+      }
+
+      .strategy-field span {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .strategy-field p {
+        margin-top: 6px;
+        color: #334155;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .interaction-form {
+        display: grid;
+        gap: 12px;
+      }
+
+      .interaction-form label {
+        display: grid;
+        gap: 6px;
+      }
+
+      .interaction-form span {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .interaction-input,
+      .interaction-select {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--ink);
+        background: var(--surface-soft);
+        font: inherit;
+      }
+
+      .interaction-select {
+        min-height: 40px;
+        padding: 8px 10px;
+      }
+
+      .interaction-input {
+        min-height: 88px;
+        resize: vertical;
+        padding: 10px 12px;
+        line-height: 1.45;
+      }
+
+      .interaction-input:focus,
+      .interaction-select:focus {
+        border-color: var(--brand);
+        outline: 3px solid rgba(21, 94, 117, 0.14);
+      }
+
+      .interaction-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .primary-button {
+        min-height: 40px;
+        border: 1px solid var(--brand);
+        border-radius: 8px;
+        padding: 9px 12px;
+        color: #fff;
+        background: var(--brand);
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 900;
+        white-space: nowrap;
+      }
+
+      .primary-button:hover,
+      .primary-button:focus-visible {
+        background: #164e63;
+        outline: none;
+      }
+
+      .form-message {
+        min-height: 18px;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .form-message.error-text {
+        color: var(--danger);
+      }
+
+      .form-message.success-text {
+        color: var(--success);
+      }
+
+      .timeline {
+        display: grid;
+        gap: 12px;
+      }
+
+      .timeline-item {
+        border: 1px solid var(--line);
+        border-left: 4px solid var(--brand);
+        border-radius: 8px;
+        background: #fff;
+        padding: 14px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .timeline-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .timeline-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .type-email {
+        color: #1d4ed8;
+        background: #eff6ff;
+      }
+
+      .type-call {
+        color: #7c2d12;
+        background: #fff7ed;
+      }
+
+      .type-meeting {
+        color: #0f766e;
+        background: #e8f4f3;
+      }
+
+      .ai-badge {
+        color: #6d28d9;
+        background: #f5f3ff;
+      }
+
+      .timeline-date {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .timeline-note {
+        color: #334155;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      @media (max-width: 860px) {
+        .topbar-inner,
+        .main {
+          width: min(100% - 20px, 1180px);
+        }
+
+        .topbar-inner,
+        .section-heading {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .metrics-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .table-header-actions {
+          align-items: flex-start;
+          flex-direction: column;
+          text-align: left;
+        }
+
+        .table-controls {
+          grid-template-columns: 1fr;
+        }
+
+        .sort-controls {
+          justify-content: flex-start;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .metrics-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .stage-chip {
+          white-space: normal;
+        }
+
+        .drawer {
+          width: 100%;
+        }
+
+        .detail-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="brand">
+            <div class="brand-mark" aria-hidden="true">AI</div>
+            <div>
+              <h1>Smart AI CRM</h1>
+              <p class="subtitle">Sub-Stage 2D: inline lead editing</p>
+            </div>
+          </div>
+          <div class="stage-chip">Mock local mode</div>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="section-heading">
+          <div>
+            <h2>Lead pipeline dashboard</h2>
+            <p>
+              This stage keeps the product mock-only, but stores the CRM data
+              in browser state so lead edits can update the dashboard immediately.
+            </p>
+          </div>
+        </section>
+
+        <section class="metrics-grid" id="metrics" aria-label="CRM metrics">
+          <div class="metric-card">
+            <span class="metric-label">Loading</span>
+            <strong class="metric-value">...</strong>
+            <p class="metric-note">Reading mock data.</p>
+          </div>
+        </section>
+
+        <section class="table-card" aria-label="Lead grid">
+          <div class="table-header">
+            <div>
+              <strong>Lead grid</strong>
+              <div class="muted" id="lead-count">Loading leads...</div>
+            </div>
+            <div class="table-header-actions">
+              <span id="store-status">Loading mock store...</span>
+              <button class="secondary-button" type="button" id="reset-mock-data">Reset mock data</button>
+            </div>
+          </div>
+          <div class="table-controls" aria-label="Lead filters and sorting">
+            <label>
+              <span class="muted">Search leads</span>
+              <input
+                class="search-input"
+                id="lead-search"
+                type="search"
+                placeholder="Company, contact, or email"
+                autocomplete="off"
+              >
+            </label>
+            <div class="sort-controls">
+              <button class="sort-button" type="button" id="sort-deal-value">Deal value</button>
+              <button class="sort-button" type="button" id="sort-last-interaction">Last interaction</button>
+            </div>
+          </div>
+          <div id="table-root">
+            <div class="state">Loading leads from mock data...</div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="drawer-backdrop" id="drawer-backdrop" aria-hidden="true"></div>
+    <aside class="drawer" id="lead-drawer" aria-label="Lead details" aria-hidden="true" inert hidden>
+      <div class="drawer-header">
+        <div class="drawer-title-row">
+          <div>
+            <p class="subtitle">Lead details</p>
+            <h2 id="drawer-title">Select a lead</h2>
+          </div>
+          <button class="close-button" type="button" id="drawer-close" aria-label="Close details">×</button>
+        </div>
+        <div class="drawer-meta" id="drawer-meta"></div>
+      </div>
+      <div class="drawer-body" id="drawer-body"></div>
+    </aside>
+
+    <script>
+      const STAGES_FOR_OPEN_PIPELINE = new Set(["Lead", "Contacted", "Proposal"]);
+      const CLOSED_STAGES = new Set(["Won", "Lost"]);
+      const STORAGE_KEY = "smart-ai-crm-workshop.crm.v1";
+      let seedCrmData = null;
+      let crmData = null;
+      let lastFocusedLeadRow = null;
+      let selectedLeadId = null;
+      let searchQuery = "";
+      let sortState = { field: null, direction: "asc" };
+      let storeStatusText = "Loading mock store...";
+      const strategyMessageByLeadId = new Map();
+      let editingCell = null;
+
+      const currency = new Intl.NumberFormat("en-IN", {
+        style: "currency",
+        currency: "INR",
+        maximumFractionDigits: 0,
+      });
+
+      const shortDate = new Intl.DateTimeFormat("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        timeZone: "UTC",
+      });
+
+      const dateTime = new Intl.DateTimeFormat("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZone: "UTC",
+      });
+
+      loadDashboard();
+
+      async function loadDashboard() {
+        try {
+          const response = await fetch("./mock_data.json");
+          if (!response.ok) {
+            throw new Error(`Unable to load mock_data.json (${response.status})`);
+          }
+
+          seedCrmData = await response.json();
+          const storedData = loadStoredCrmData();
+          crmData = storedData || cloneCrmData(seedCrmData);
+          if (!storedData) {
+            persistCrmData("Seeded into browser storage");
+          }
+
+          setupDashboardControls();
+          setupDrawerControls();
+          renderDashboard();
+        } catch (error) {
+          renderError(error);
+        }
+      }
+
+      function renderDashboard() {
+        renderMetrics(crmData.leads);
+        renderLeadGrid();
+        updateStoreStatus();
+      }
+
+      function loadStoredCrmData() {
+        try {
+          const storedValue = localStorage.getItem(STORAGE_KEY);
+          if (!storedValue) return null;
+
+          const parsedData = JSON.parse(storedValue);
+          if (!isValidCrmData(parsedData)) {
+            throw new Error("Stored CRM data is not valid");
+          }
+
+          storeStatusText = "Loaded from browser storage";
+          return cloneCrmData(parsedData);
+        } catch (error) {
+          try {
+            localStorage.removeItem(STORAGE_KEY);
+          } catch {
+            // Ignore cleanup errors; the seed data can still render.
+          }
+          storeStatusText = "Storage reset from seed data";
+          return null;
+        }
+      }
+
+      function persistCrmData(statusText = "Saved in browser storage") {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(crmData));
+          storeStatusText = statusText;
+        } catch {
+          storeStatusText = "Browser storage unavailable";
+        }
+      }
+
+      function resetMockData() {
+        if (!seedCrmData) return;
+
+        closeLeadDetails({ restoreFocus: false });
+        selectedLeadId = null;
+        lastFocusedLeadRow = null;
+        searchQuery = "";
+        sortState = { field: null, direction: "asc" };
+        editingCell = null;
+        strategyMessageByLeadId.clear();
+        document.getElementById("lead-search").value = "";
+
+        crmData = cloneCrmData(seedCrmData);
+        persistCrmData("Reset to seed mock data");
+        renderDashboard();
+      }
+
+      function updateStoreStatus() {
+        document.getElementById("store-status").textContent = storeStatusText;
+      }
+
+      function isValidCrmData(value) {
+        return (
+          value &&
+          Array.isArray(value.leads) &&
+          Array.isArray(value.interactions) &&
+          Array.isArray(value.ai_strategies)
+        );
+      }
+
+      function cloneCrmData(value) {
+        return JSON.parse(JSON.stringify(value));
+      }
+
+      function renderMetrics(leads) {
+        const wonDeals = leads.filter((lead) => lead.stage === "Won").length;
+        const lostDeals = leads.filter((lead) => lead.stage === "Lost").length;
+        const activeLeads = leads.filter((lead) => !CLOSED_STAGES.has(lead.stage)).length;
+        const openPipeline = leads
+          .filter((lead) => STAGES_FOR_OPEN_PIPELINE.has(lead.stage))
+          .reduce((sum, lead) => sum + Number(lead.deal_value || 0), 0);
+        const winRate = wonDeals + lostDeals === 0 ? 0 : wonDeals / (wonDeals + lostDeals);
+
+        const metrics = [
+          {
+            label: "Open Pipeline",
+            value: formatCompactCurrency(openPipeline),
+            note: "Lead + Contacted + Proposal",
+          },
+          {
+            label: "Won Deals",
+            value: String(wonDeals),
+            note: "Closed successfully",
+          },
+          {
+            label: "Average Win Rate",
+            value: `${(winRate * 100).toFixed(1)}%`,
+            note: "Won / (Won + Lost)",
+          },
+          {
+            label: "Active Leads",
+            value: String(activeLeads),
+            note: "Not yet won or lost",
+          },
+        ];
+
+        document.getElementById("metrics").innerHTML = metrics
+          .map(
+            (metric) => `
+              <article class="metric-card">
+                <span class="metric-label">${escapeHtml(metric.label)}</span>
+                <strong class="metric-value">${escapeHtml(metric.value)}</strong>
+                <p class="metric-note">${escapeHtml(metric.note)}</p>
+              </article>
+            `,
+          )
+          .join("");
+      }
+
+      function renderLeadGrid() {
+        if (!crmData) return;
+
+        const visibleLeads = getVisibleLeads();
+        updateSortButtons();
+        document.getElementById("lead-count").textContent =
+          `${visibleLeads.length} of ${crmData.leads.length} leads in local mock store`;
+
+        if (visibleLeads.length === 0) {
+          document.getElementById("table-root").innerHTML =
+            '<div class="state">No leads match the current search.</div>';
+          return;
+        }
+
+        const strategyByLeadId = new Map(
+          crmData.ai_strategies.map((strategy) => [strategy.lead_id, strategy]),
+        );
+
+        document.getElementById("table-root").innerHTML = `
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Company</th>
+                  <th>Contact</th>
+                  <th>Email</th>
+                  <th>Stage</th>
+                  <th>Deal Value ${sortIndicator("deal_value")}</th>
+                  <th>Last Interaction ${sortIndicator("last_interaction_date")}</th>
+                  <th>Risk</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${visibleLeads.map((lead) => renderLeadRow(lead, strategyByLeadId.get(lead.id))).join("")}
+              </tbody>
+            </table>
+          </div>
+        `;
+
+        document.querySelectorAll(".lead-row").forEach((row) => {
+          row.addEventListener("click", () => openLeadDetails(row.dataset.leadId));
+          row.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              if (event.target.closest(".editable-trigger")) return;
+              event.preventDefault();
+              openLeadDetails(row.dataset.leadId);
+            }
+          });
+        });
+        document.querySelectorAll(".editable-cell").forEach((cell) => {
+          cell.addEventListener("click", startInlineEditFromCell);
+        });
+        document.querySelectorAll(".editable-trigger").forEach((button) => {
+          button.addEventListener("click", startInlineEdit);
+        });
+        document.querySelectorAll(".edit-control").forEach((control) => {
+          control.addEventListener("click", stopRowInteraction);
+        });
+        document.querySelectorAll(".edit-input, .edit-select").forEach((control) => {
+          control.addEventListener("click", stopRowInteraction);
+          control.addEventListener("keydown", handleEditKeydown);
+        });
+        document.querySelectorAll(".edit-save").forEach((button) => {
+          button.addEventListener("click", commitInlineEdit);
+        });
+        document.querySelectorAll(".edit-cancel").forEach((button) => {
+          button.addEventListener("click", cancelInlineEdit);
+        });
+
+        if (selectedLeadId) {
+          lastFocusedLeadRow = document.querySelector(`.lead-row[data-lead-id="${selectedLeadId}"]`);
+        }
+
+        focusActiveEditControl();
+      }
+
+      function renderLeadRow(lead, strategy) {
+        const risk = strategy?.risk_level || "No strategy";
+        return `
+          <tr class="lead-row${lead.id === selectedLeadId ? " selected" : ""}" data-lead-id="${escapeHtml(lead.id)}" tabindex="0">
+            ${renderEditableCell(lead, "company_name")}
+            ${renderEditableCell(lead, "contact_person")}
+            ${renderEditableCell(lead, "email")}
+            ${renderEditableCell(lead, "stage")}
+            ${renderEditableCell(lead, "deal_value")}
+            <td>${escapeHtml(formatDate(lead.last_interaction_date))}</td>
+            <td><span class="badge ${riskClass(risk)}">${escapeHtml(risk)}</span></td>
+          </tr>
+        `;
+      }
+
+      function renderEditableCell(lead, field) {
+        const isEditing = editingCell?.leadId === lead.id && editingCell?.field === field;
+        const error = isEditing ? editingCell.error : "";
+
+        if (isEditing) {
+          return `
+            <td class="editable-cell" data-field="${escapeHtml(field)}">
+              <div class="edit-control">
+                ${renderEditControl(lead, field)}
+                ${error ? `<div class="edit-error">${escapeHtml(error)}</div>` : ""}
+                <div class="edit-actions">
+                  <button class="mini-button primary edit-save" type="button">Save</button>
+                  <button class="mini-button edit-cancel" type="button">Cancel</button>
+                </div>
+              </div>
+            </td>
+          `;
+        }
+
+        return `
+          <td class="editable-cell" data-field="${escapeHtml(field)}">
+            <button
+              class="editable-trigger"
+              type="button"
+              data-lead-id="${escapeHtml(lead.id)}"
+              data-field="${escapeHtml(field)}"
+              aria-label="Edit ${escapeHtml(fieldLabel(field))}"
+            >
+              ${renderEditableDisplayValue(lead, field)}
+            </button>
+          </td>
+        `;
+      }
+
+      function renderEditControl(lead, field) {
+        const value = editingCell?.value ?? String(lead[field] ?? "");
+
+        if (field === "stage") {
+          const stages = ["Lead", "Contacted", "Proposal", "Won", "Lost"];
+          return `
+            <select class="edit-select" data-lead-id="${escapeHtml(lead.id)}" data-field="${escapeHtml(field)}">
+              ${stages
+                .map(
+                  (stage) =>
+                    `<option value="${escapeHtml(stage)}"${stage === value ? " selected" : ""}>${escapeHtml(stage)}</option>`,
+                )
+                .join("")}
+            </select>
+          `;
+        }
+
+        return `
+          <input
+            class="edit-input"
+            data-lead-id="${escapeHtml(lead.id)}"
+            data-field="${escapeHtml(field)}"
+            type="${field === "deal_value" ? "number" : "text"}"
+            value="${escapeHtml(value)}"
+            ${field === "deal_value" ? 'min="0" step="1"' : ""}
+          >
+        `;
+      }
+
+      function renderEditableDisplayValue(lead, field) {
+        if (field === "company_name") {
+          return `
+            <div class="company">
+              <strong>${escapeHtml(lead.company_name)}</strong>
+              <span>ID ${escapeHtml(lead.id)}</span>
+            </div>
+          `;
+        }
+
+        if (field === "email") {
+          return `<span class="muted">${escapeHtml(lead.email)}</span>`;
+        }
+
+        if (field === "stage") {
+          return `<span class="badge ${stageClass(lead.stage)}">${escapeHtml(lead.stage)}</span>`;
+        }
+
+        if (field === "deal_value") {
+          return escapeHtml(currency.format(Number(lead.deal_value || 0)));
+        }
+
+        return escapeHtml(lead[field]);
+      }
+
+      function fieldLabel(field) {
+        return {
+          company_name: "company",
+          contact_person: "contact",
+          email: "email",
+          stage: "stage",
+          deal_value: "deal value",
+        }[field];
+      }
+
+      function stopRowInteraction(event) {
+        event.stopPropagation();
+      }
+
+      function startInlineEdit(event) {
+        event.stopPropagation();
+        const { leadId, field } = event.currentTarget.dataset;
+        openInlineEdit(leadId, field);
+      }
+
+      function startInlineEditFromCell(event) {
+        event.stopPropagation();
+        if (event.target.closest(".edit-control")) return;
+
+        const row = event.currentTarget.closest(".lead-row");
+        const leadId = row?.dataset.leadId;
+        const field = event.currentTarget.dataset.field;
+        openInlineEdit(leadId, field);
+      }
+
+      function openInlineEdit(leadId, field) {
+        const lead = crmData.leads.find((item) => item.id === leadId);
+        if (!lead) return;
+
+        editingCell = {
+          leadId,
+          field,
+          value: String(lead[field] ?? ""),
+          error: "",
+        };
+        renderLeadGrid();
+      }
+
+      function handleEditKeydown(event) {
+        event.stopPropagation();
+
+        if (event.key === "Enter") {
+          event.preventDefault();
+          commitInlineEdit(event);
+        }
+
+        if (event.key === "Escape") {
+          event.preventDefault();
+          cancelInlineEdit(event);
+        }
+      }
+
+      function commitInlineEdit(event) {
+        event.stopPropagation();
+        if (!editingCell) return;
+
+        const control = document.querySelector(".edit-input, .edit-select");
+        const rawValue = control?.value ?? "";
+        const validation = validateLeadEdit(editingCell.field, rawValue);
+
+        if (!validation.ok) {
+          editingCell = {
+            ...editingCell,
+            value: rawValue,
+            error: validation.error,
+          };
+          renderLeadGrid();
+          return;
+        }
+
+        const lead = crmData.leads.find((item) => item.id === editingCell.leadId);
+        if (!lead) return;
+
+        lead[editingCell.field] = validation.value;
+        selectedLeadId = lead.id;
+        editingCell = null;
+        persistCrmData("Saved lead edit in browser storage");
+        renderDashboard();
+      }
+
+      function cancelInlineEdit(event) {
+        event.stopPropagation();
+        editingCell = null;
+        renderLeadGrid();
+      }
+
+      function validateLeadEdit(field, rawValue) {
+        const value = String(rawValue).trim();
+
+        if (field === "email") {
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+            return { ok: false, error: "Enter a valid email address." };
+          }
+          return { ok: true, value };
+        }
+
+        if (field === "deal_value") {
+          const numericValue = Number(value);
+          if (value === "" || !Number.isFinite(numericValue) || numericValue < 0) {
+            return { ok: false, error: "Enter a valid deal value." };
+          }
+          return { ok: true, value: numericValue };
+        }
+
+        if (field === "stage") {
+          if (!["Lead", "Contacted", "Proposal", "Won", "Lost"].includes(value)) {
+            return { ok: false, error: "Select a valid stage." };
+          }
+          return { ok: true, value };
+        }
+
+        if (!value) {
+          return { ok: false, error: `${fieldLabel(field)} is required.` };
+        }
+
+        return { ok: true, value };
+      }
+
+      function focusActiveEditControl() {
+        if (!editingCell) return;
+
+        const control = document.querySelector(".edit-input, .edit-select");
+        if (!control) return;
+
+        control.focus();
+        if (control instanceof HTMLInputElement) {
+          control.select();
+        }
+      }
+
+      function setupDashboardControls() {
+        const searchInput = document.getElementById("lead-search");
+        searchInput.addEventListener("input", (event) => {
+          searchQuery = event.target.value.trim().toLowerCase();
+          renderLeadGrid();
+          if (selectedLeadId && !getVisibleLeads().some((lead) => lead.id === selectedLeadId)) {
+            closeLeadDetails({ restoreFocus: false });
+          }
+        });
+
+        document
+          .getElementById("sort-deal-value")
+          .addEventListener("click", () => cycleSort("deal_value"));
+        document
+          .getElementById("sort-last-interaction")
+          .addEventListener("click", () => cycleSort("last_interaction_date"));
+        document.getElementById("reset-mock-data").addEventListener("click", resetMockData);
+      }
+
+      function getVisibleLeads() {
+        const filteredLeads = crmData.leads.filter((lead) => {
+          if (!searchQuery) return true;
+
+          return [lead.company_name, lead.contact_person, lead.email].some((value) =>
+            String(value).toLowerCase().includes(searchQuery),
+          );
+        });
+
+        if (!sortState.field) {
+          return filteredLeads;
+        }
+
+        return [...filteredLeads].sort((left, right) => {
+          const leftValue = sortableValue(left, sortState.field);
+          const rightValue = sortableValue(right, sortState.field);
+          const order = leftValue === rightValue ? 0 : leftValue > rightValue ? 1 : -1;
+          return sortState.direction === "asc" ? order : -order;
+        });
+      }
+
+      function sortableValue(lead, field) {
+        if (field === "deal_value") {
+          return Number(lead.deal_value || 0);
+        }
+
+        if (field === "last_interaction_date") {
+          return lead.last_interaction_date ? Date.parse(lead.last_interaction_date) : -Infinity;
+        }
+
+        return "";
+      }
+
+      function cycleSort(field) {
+        if (sortState.field !== field) {
+          sortState = { field, direction: "asc" };
+        } else if (sortState.direction === "asc") {
+          sortState = { field, direction: "desc" };
+        } else {
+          sortState = { field: null, direction: "asc" };
+        }
+
+        renderLeadGrid();
+      }
+
+      function updateSortButtons() {
+        const buttonByField = {
+          deal_value: document.getElementById("sort-deal-value"),
+          last_interaction_date: document.getElementById("sort-last-interaction"),
+        };
+
+        Object.entries(buttonByField).forEach(([field, button]) => {
+          const isActive = sortState.field === field;
+          button.classList.toggle("active", isActive);
+          button.textContent = `${field === "deal_value" ? "Deal value" : "Last interaction"} ${
+            isActive ? sortIndicator(field) : ""
+          }`.trim();
+          button.setAttribute("aria-pressed", String(isActive));
+        });
+      }
+
+      function sortIndicator(field) {
+        if (sortState.field !== field) return "";
+        return sortState.direction === "asc" ? "(asc)" : "(desc)";
+      }
+
+      function formatCompactCurrency(value) {
+        if (value >= 10000000) {
+          return `INR ${(value / 10000000).toFixed(2)}Cr`;
+        }
+        if (value >= 100000) {
+          return `INR ${(value / 100000).toFixed(1)}L`;
+        }
+        return currency.format(value);
+      }
+
+      function formatDate(value) {
+        if (!value) return "No interaction";
+        return shortDate.format(new Date(value));
+      }
+
+      function stageClass(stage) {
+        return `stage-${String(stage).toLowerCase()}`;
+      }
+
+      function riskClass(risk) {
+        return risk === "No strategy" ? "risk-none" : `risk-${String(risk).toLowerCase()}`;
+      }
+
+      function renderError(error) {
+        document.getElementById("metrics").innerHTML = "";
+        document.getElementById("lead-count").textContent = "Could not load leads";
+        document.getElementById("table-root").innerHTML = `
+          <div class="error">
+            ${escapeHtml(error.message)}
+          </div>
+        `;
+      }
+
+      function setupDrawerControls() {
+        document.getElementById("drawer-close").addEventListener("click", closeLeadDetails);
+        document.getElementById("drawer-backdrop").addEventListener("click", closeLeadDetails);
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && document.getElementById("lead-drawer").classList.contains("open")) {
+            closeLeadDetails();
+          }
+        });
+      }
+
+      function openLeadDetails(leadId) {
+        if (!crmData) return;
+
+        const lead = crmData.leads.find((item) => item.id === String(leadId));
+        if (!lead) return;
+        selectedLeadId = lead.id;
+        lastFocusedLeadRow = [...document.querySelectorAll(".lead-row")].find(
+          (row) => row.dataset.leadId === String(leadId),
+        );
+        document.querySelectorAll(".lead-row").forEach((row) => {
+          row.classList.toggle("selected", row.dataset.leadId === selectedLeadId);
+        });
+
+        const interactions = crmData.interactions
+          .filter((interaction) => interaction.lead_id === lead.id)
+          .sort(
+            (left, right) =>
+              Date.parse(right.interaction_date) - Date.parse(left.interaction_date),
+          );
+        const strategy = crmData.ai_strategies.find((item) => item.lead_id === lead.id);
+
+        document.getElementById("drawer-title").textContent = lead.company_name;
+        document.getElementById("drawer-meta").innerHTML = `
+          <span class="badge ${stageClass(lead.stage)}">${escapeHtml(lead.stage)}</span>
+          <span class="badge risk-none">${escapeHtml(currency.format(Number(lead.deal_value || 0)))}</span>
+          <span class="badge risk-none">${escapeHtml(formatDate(lead.last_interaction_date))}</span>
+        `;
+        document.getElementById("drawer-body").innerHTML = `
+          <section class="detail-card">
+            <h3>Lead identity</h3>
+            <div class="detail-grid">
+              <div class="detail-item">
+                <span>Contact</span>
+                <b>${escapeHtml(lead.contact_person)}</b>
+              </div>
+              <div class="detail-item">
+                <span>Email</span>
+                <b>${escapeHtml(lead.email)}</b>
+              </div>
+              <div class="detail-item">
+                <span>Lead ID</span>
+                <b>${escapeHtml(lead.id)}</b>
+              </div>
+              <div class="detail-item">
+                <span>Interactions</span>
+                <b>${interactions.length}</b>
+              </div>
+            </div>
+          </section>
+          <section class="detail-card">
+            <h3>Add interaction note</h3>
+            ${renderInteractionForm(lead)}
+          </section>
+          <section class="detail-card">
+            <div class="detail-card-header">
+              <h3>AI Strategy</h3>
+              <button class="secondary-button" type="button" id="generate-strategy" data-lead-id="${escapeHtml(lead.id)}">
+                Generate Strategy
+              </button>
+            </div>
+            ${renderStrategy(strategy, interactions)}
+          </section>
+          <section class="detail-card">
+            <h3>Interaction timeline</h3>
+            ${renderTimeline(interactions)}
+          </section>
+        `;
+
+        document.getElementById("drawer-backdrop").classList.add("open");
+        const drawer = document.getElementById("lead-drawer");
+        drawer.hidden = false;
+        drawer.removeAttribute("inert");
+        drawer.setAttribute("aria-hidden", "false");
+        drawer.offsetHeight;
+        drawer.classList.add("open");
+        document
+          .getElementById("interaction-form")
+          .addEventListener("submit", handleInteractionSubmit);
+        document
+          .getElementById("generate-strategy")
+          .addEventListener("click", handleGenerateStrategy);
+        document.getElementById("drawer-close").focus();
+      }
+
+      function closeLeadDetails({ restoreFocus = true } = {}) {
+        const drawer = document.getElementById("lead-drawer");
+        if (!drawer.classList.contains("open")) return;
+
+        if (restoreFocus && lastFocusedLeadRow && document.contains(lastFocusedLeadRow)) {
+          lastFocusedLeadRow.focus();
+        }
+
+        document.getElementById("drawer-backdrop").classList.remove("open");
+        drawer.classList.remove("open");
+        drawer.setAttribute("aria-hidden", "true");
+        drawer.setAttribute("inert", "");
+        drawer.hidden = true;
+      }
+
+      function renderTimeline(interactions) {
+        if (interactions.length === 0) {
+          return '<div class="state">No interactions yet. This lead is useful for testing the empty timeline state.</div>';
+        }
+
+        return `
+          <div class="timeline">
+            ${interactions.map(renderTimelineItem).join("")}
+          </div>
+        `;
+      }
+
+      function renderInteractionForm(lead) {
+        return `
+          <form class="interaction-form" id="interaction-form" data-lead-id="${escapeHtml(lead.id)}" novalidate>
+            <label>
+              <span>Type</span>
+              <select class="interaction-select" id="interaction-type" name="type">
+                <option value="Email">Email</option>
+                <option value="Call">Call</option>
+                <option value="Meeting">Meeting</option>
+              </select>
+            </label>
+            <label>
+              <span>Notes</span>
+              <textarea
+                class="interaction-input"
+                id="interaction-notes"
+                name="notes"
+                rows="4"
+                placeholder="Capture what happened and the next useful context"
+              ></textarea>
+            </label>
+            <div class="interaction-actions">
+              <div class="form-message" id="interaction-message" role="status"></div>
+              <button class="primary-button" type="submit">Add note</button>
+            </div>
+          </form>
+        `;
+      }
+
+      function handleInteractionSubmit(event) {
+        event.preventDefault();
+
+        const form = event.currentTarget;
+        const message = document.getElementById("interaction-message");
+        const leadId = form.dataset.leadId;
+        const type = form.elements.type.value;
+        const notes = form.elements.notes.value.trim();
+
+        if (!notes) {
+          message.textContent = "Enter a note before saving.";
+          message.className = "form-message error-text";
+          form.elements.notes.focus();
+          return;
+        }
+
+        const interactionDate = getNextInteractionDate(leadId);
+        const interaction = {
+          id: `client-${Date.parse(interactionDate)}`,
+          lead_id: leadId,
+          interaction_date: interactionDate,
+          type,
+          notes,
+          ai_analyzed: false,
+        };
+
+        strategyMessageByLeadId.delete(leadId);
+        crmData.interactions.push(interaction);
+        const lead = crmData.leads.find((item) => item.id === leadId);
+        if (lead) {
+          lead.last_interaction_date = interactionDate;
+        }
+
+        persistCrmData("Saved interaction in browser storage");
+        renderDashboard();
+        openLeadDetails(leadId);
+        const updatedMessage = document.getElementById("interaction-message");
+        updatedMessage.textContent = "Note added.";
+        updatedMessage.className = "form-message success-text";
+      }
+
+      function getNextInteractionDate(leadId) {
+        const latestExistingTime = crmData.interactions
+          .filter((interaction) => interaction.lead_id === leadId)
+          .reduce(
+            (latestTime, interaction) =>
+              Math.max(latestTime, Date.parse(interaction.interaction_date) || 0),
+            0,
+          );
+        const nextTime = Math.max(Date.now(), latestExistingTime + 1000);
+
+        return new Date(nextTime).toISOString();
+      }
+
+      function handleGenerateStrategy(event) {
+        const leadId = event.currentTarget.dataset.leadId;
+        const result = generateMockStrategyForLead(leadId);
+
+        if (result.message) {
+          strategyMessageByLeadId.set(leadId, {
+            type: "error",
+            text: result.message,
+          });
+          storeStatusText = "Strategy not generated";
+        } else {
+          strategyMessageByLeadId.set(leadId, {
+            type: "success",
+            text: "Generated strategy from the latest 3 interactions.",
+          });
+          persistCrmData("Saved generated strategy in browser storage");
+        }
+
+        renderDashboard();
+        openLeadDetails(leadId);
+      }
+
+      function generateMockStrategyForLead(leadId) {
+        const lead = crmData.leads.find((item) => item.id === String(leadId));
+        if (!lead) return { lead_id: String(leadId), message: "Lead not found" };
+
+        const metrics = getMockLeadMetrics(lead.id);
+        const context = getMockLeadContext(lead.id);
+
+        if (context.length === 0) {
+          return {
+            lead_id: lead.id,
+            message: "Insufficient context to form strategy",
+          };
+        }
+
+        const strategy = {
+          id: existingStrategyId(lead.id),
+          lead_id: lead.id,
+          icebreaker: buildMockIcebreaker(context[0]),
+          next_step: buildMockNextStep(metrics.stage),
+          risk_level: buildMockRiskLevel(metrics, context),
+          risk_justification: buildMockRiskJustification(metrics, context),
+          generated_at: getStrategyGeneratedAt(context),
+        };
+
+        const existingIndex = crmData.ai_strategies.findIndex(
+          (item) => item.lead_id === lead.id,
+        );
+        if (existingIndex >= 0) {
+          crmData.ai_strategies[existingIndex] = strategy;
+        } else {
+          crmData.ai_strategies.push(strategy);
+        }
+
+        const contextIds = new Set(context.map((interaction) => interaction.id));
+        crmData.interactions = crmData.interactions.map((interaction) =>
+          contextIds.has(interaction.id)
+            ? { ...interaction, ai_analyzed: true }
+            : interaction,
+        );
+
+        return strategy;
+      }
+
+      function getMockLeadMetrics(leadId) {
+        const lead = crmData.leads.find((item) => item.id === String(leadId));
+        return {
+          deal_value: Number(lead?.deal_value || 0),
+          stage: lead?.stage || "Lead",
+          interaction_count: crmData.interactions.filter(
+            (interaction) => interaction.lead_id === String(leadId),
+          ).length,
+        };
+      }
+
+      function getMockLeadContext(leadId) {
+        return crmData.interactions
+          .filter((interaction) => interaction.lead_id === String(leadId))
+          .sort(
+            (left, right) =>
+              Date.parse(right.interaction_date) - Date.parse(left.interaction_date),
+          )
+          .slice(0, 3)
+          .map((interaction) => ({
+            ...interaction,
+            notes: interaction.notes.slice(0, 1000),
+          }));
+      }
+
+      function existingStrategyId(leadId) {
+        const existing = crmData.ai_strategies.find((strategy) => strategy.lead_id === leadId);
+        if (existing) return existing.id;
+
+        const numericIds = crmData.ai_strategies
+          .map((strategy) => Number(strategy.id))
+          .filter(Number.isFinite);
+        return String(Math.max(0, ...numericIds) + 1);
+      }
+
+      function getStrategyGeneratedAt(context) {
+        const latestContextTime = Math.max(
+          ...context.map((interaction) => Date.parse(interaction.interaction_date) || 0),
+        );
+        return new Date(Math.max(Date.now(), latestContextTime + 1000)).toISOString();
+      }
+
+      function buildMockIcebreaker(latest) {
+        return `Following up on your latest ${latest.type.toLowerCase()}: ${latest.notes}`;
+      }
+
+      function buildMockNextStep(stage) {
+        switch (stage) {
+          case "Lead":
+            return "Ask for a 15-minute discovery call and confirm the business problem.";
+          case "Contacted":
+            return "Send a concise recap and ask for decision criteria.";
+          case "Proposal":
+            return "Confirm proposal blockers, decision owner, and approval timeline.";
+          case "Won":
+            return "Introduce onboarding and confirm kickoff details.";
+          case "Lost":
+            return "Move to nurture and schedule a future check-in.";
+          default:
+            return "Review the latest interaction and choose the next sales action.";
+        }
+      }
+
+      function buildMockRiskLevel(metrics, context) {
+        const notes = context.map((item) => item.notes.toLowerCase()).join(" ");
+
+        if (metrics.stage === "Lost") return "High";
+        if (notes.includes("budget") || notes.includes("competitor")) return "High";
+        if (metrics.stage === "Proposal") return "Medium";
+        return "Low";
+      }
+
+      function buildMockRiskJustification(metrics, context) {
+        return `Stage is ${metrics.stage}, deal value is ${metrics.deal_value}, and ${context.length} recent interaction${context.length === 1 ? "" : "s"} were available.`;
+      }
+
+      function renderStrategy(strategy, interactions) {
+        if (!strategy && interactions.length === 0) {
+          return `
+            ${renderStrategyMessage(selectedLeadId)}
+            <div class="state">Insufficient context to form strategy.</div>
+          `;
+        }
+
+        if (!strategy) {
+          return `
+            ${renderStrategyMessage(selectedLeadId)}
+            <div class="state">No AI strategy generated yet.</div>
+          `;
+        }
+
+        const hasUnanalyzedNewerInteraction = interactions.some(
+          (interaction) =>
+            !interaction.ai_analyzed &&
+            Date.parse(interaction.interaction_date) > Date.parse(strategy.generated_at),
+        );
+
+        return `
+          <div class="strategy-card">
+            ${renderStrategyMessage(strategy.lead_id)}
+            <div class="strategy-header">
+              <span class="badge ${riskClass(strategy.risk_level)}">${escapeHtml(strategy.risk_level)} risk</span>
+              <span class="muted">Generated ${escapeHtml(formatDateTime(strategy.generated_at))}</span>
+            </div>
+            ${
+              hasUnanalyzedNewerInteraction
+                ? '<div class="strategy-notice">New interaction added after this strategy. Regenerate in the next stage.</div>'
+                : ""
+            }
+            <div class="strategy-fields">
+              <div class="strategy-field">
+                <span>Icebreaker</span>
+                <p>${escapeHtml(strategy.icebreaker)}</p>
+              </div>
+              <div class="strategy-field">
+                <span>Next step</span>
+                <p>${escapeHtml(strategy.next_step)}</p>
+              </div>
+              <div class="strategy-field">
+                <span>Risk justification</span>
+                <p>${escapeHtml(strategy.risk_justification)}</p>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderStrategyMessage(leadId) {
+        const message = strategyMessageByLeadId.get(String(leadId));
+        if (!message) return "";
+
+        return `
+          <div class="strategy-message ${message.type === "error" ? "error-text" : ""}" role="status">
+            ${escapeHtml(message.text)}
+          </div>
+        `;
+      }
+
+      function renderTimelineItem(interaction) {
+        return `
+          <article class="timeline-item">
+            <div class="timeline-top">
+              <div class="timeline-badges">
+                <span class="badge ${typeClass(interaction.type)}">${escapeHtml(interaction.type)}</span>
+                ${
+                  interaction.ai_analyzed
+                    ? '<span class="badge ai-badge">AI analyzed</span>'
+                    : ""
+                }
+              </div>
+              <div class="timeline-date">${escapeHtml(formatDate(interaction.interaction_date))}</div>
+            </div>
+            <div class="timeline-note">${escapeHtml(interaction.notes)}</div>
+          </article>
+        `;
+      }
+
+      function typeClass(type) {
+        return `type-${String(type).toLowerCase()}`;
+      }
+
+      function formatDateTime(value) {
+        if (!value) return "Not generated";
+        return dateTime.format(new Date(value));
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+    </script>
+  </body>
+</html>
